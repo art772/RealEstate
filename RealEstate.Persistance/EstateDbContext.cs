@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Persistance
 {
-    public class EstateDbContext : DbContext
+    public class EstateDbContext : DbContext, IEstateDbContext
     {
         private readonly IDateTime _dateTime;
         public EstateDbContext(DbContextOptions<EstateDbContext> options, IDateTime dateTime) : base(options)

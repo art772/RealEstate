@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RealEstate.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace RealEstate.Persistance
         {
             services.AddDbContext<EstateDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EstateDatabase")));
 
+            services.AddScoped<IEstateDbContext, EstateDbContext>();
             return services;
         }
     }
