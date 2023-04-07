@@ -15,7 +15,7 @@ namespace RealEstate.Infrastructure
     {
         public static IServiceCollection AddInfrasructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddTransient<IDateTime, DateTimeServices>();
+            services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IFileStore, FileStore.FileStore>();
             services.AddTransient<IFileWrapper, FileWrapper>();
             services.AddTransient<IDirectoryWrapper, DirectoryWrapper>();

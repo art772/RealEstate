@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Infrastructure.Services
 {
-    public class DateTimeServices : IDateTime
+    public class DateTimeService : IDateTime
     {
         public DateTime Now => DateTime.Now;
     }

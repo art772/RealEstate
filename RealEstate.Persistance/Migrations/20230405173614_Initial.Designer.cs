@@ -12,7 +12,7 @@ using RealEstate.Persistance;
 namespace RealEstate.Persistance.Migrations
 {
     [DbContext(typeof(EstateDbContext))]
-    [Migration("20230329194106_Initial")]
+    [Migration("20230405173614_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,21 +23,6 @@ namespace RealEstate.Persistance.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EstateTag", b =>
-                {
-                    b.Property<int>("EstatesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EstatesId", "TagsId");
-
-                    b.HasIndex("TagsId");
-
-                    b.ToTable("EstateTag");
-                });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Category", b =>
                 {
@@ -106,7 +91,8 @@ namespace RealEstate.Persistance.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3000)
+                        .HasColumnType("nvarchar(3000)");
 
                     b.Property<double>("EstateArea")
                         .HasColumnType("float");
@@ -132,7 +118,8 @@ namespace RealEstate.Persistance.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -167,6 +154,21 @@ namespace RealEstate.Persistance.Migrations
                     b.HasIndex("StateId");
 
                     b.ToTable("Estates");
+                });
+
+            modelBuilder.Entity("RealEstate.Domain.Entities.EstateTag", b =>
+                {
+                    b.Property<int>("EstateId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EstateId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("EstateTags");
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Genre", b =>
@@ -289,21 +291,6 @@ namespace RealEstate.Persistance.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("EstateTag", b =>
-                {
-                    b.HasOne("RealEstate.Domain.Entities.Estate", null)
-                        .WithMany()
-                        .HasForeignKey("EstatesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RealEstate.Domain.Entities.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("RealEstate.Domain.Entities.Estate", b =>
                 {
                     b.HasOne("RealEstate.Domain.Entities.Category", "Category")
@@ -331,9 +318,33 @@ namespace RealEstate.Persistance.Migrations
                     b.Navigation("State");
                 });
 
+            modelBuilder.Entity("RealEstate.Domain.Entities.EstateTag", b =>
+                {
+                    b.HasOne("RealEstate.Domain.Entities.Tag", "Tag")
+                        .WithMany("EstateTags")
+                        .HasForeignKey("EstateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RealEstate.Domain.Entities.Estate", "Estate")
+                        .WithMany("EstateTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Estate");
+
+                    b.Navigation("Tag");
+                });
+
             modelBuilder.Entity("RealEstate.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Estates");
+                });
+
+            modelBuilder.Entity("RealEstate.Domain.Entities.Estate", b =>
+                {
+                    b.Navigation("EstateTags");
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Genre", b =>
@@ -344,6 +355,11 @@ namespace RealEstate.Persistance.Migrations
             modelBuilder.Entity("RealEstate.Domain.Entities.State", b =>
                 {
                     b.Navigation("Estates");
+                });
+
+            modelBuilder.Entity("RealEstate.Domain.Entities.Tag", b =>
+                {
+                    b.Navigation("EstateTags");
                 });
 #pragma warning restore 612, 618
         }

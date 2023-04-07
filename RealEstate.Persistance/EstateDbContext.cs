@@ -6,6 +6,7 @@ using RealEstate.Persistance.SeedData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,11 @@ namespace RealEstate.Persistance
     public class EstateDbContext : DbContext, IEstateDbContext
     {
         private readonly IDateTime _dateTime;
+
+        public EstateDbContext(DbContextOptions<EstateDbContext> options) : base(options)
+        {
+        }
+
         public EstateDbContext(DbContextOptions<EstateDbContext> options, IDateTime dateTime) : base(options)
         {
             _dateTime = dateTime;
@@ -24,9 +30,26 @@ namespace RealEstate.Persistance
         public DbSet<Genre> Genres { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<EstateTag> EstateTags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
+            modelBuilder.Entity<EstateTag>()
+                .HasKey(et => new { et.EstateId, et.TagId });
+
+            modelBuilder.Entity<EstateTag>()
+                .HasOne(e => e.Estate)
+                .WithMany(et => et.EstateTags)
+                .HasForeignKey(e => e.TagId);
+
+            modelBuilder.Entity<EstateTag>()
+                .HasOne(t => t.Tag)
+                .WithMany(et => et.EstateTags)
+                .HasForeignKey(t => t.EstateId);
+
             modelBuilder.SeedData();
         }
 

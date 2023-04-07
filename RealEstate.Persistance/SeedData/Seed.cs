@@ -67,6 +67,7 @@ namespace RealEstate.Persistance.SeedData
                     StateId = 1,
                 }
                 );
+            
         }
     }
 }

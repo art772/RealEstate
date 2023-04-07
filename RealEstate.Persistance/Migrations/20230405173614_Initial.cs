@@ -96,8 +96,8 @@ namespace RealEstate.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StreetNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FlatNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -142,24 +142,24 @@ namespace RealEstate.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EstateTag",
+                name: "EstateTags",
                 columns: table => new
                 {
-                    EstatesId = table.Column<int>(type: "int", nullable: false),
-                    TagsId = table.Column<int>(type: "int", nullable: false)
+                    EstateId = table.Column<int>(type: "int", nullable: false),
+                    TagId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EstateTag", x => new { x.EstatesId, x.TagsId });
+                    table.PrimaryKey("PK_EstateTags", x => new { x.EstateId, x.TagId });
                     table.ForeignKey(
-                        name: "FK_EstateTag_Estates_EstatesId",
-                        column: x => x.EstatesId,
+                        name: "FK_EstateTags_Estates_TagId",
+                        column: x => x.TagId,
                         principalTable: "Estates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EstateTag_Tags_TagsId",
-                        column: x => x.TagsId,
+                        name: "FK_EstateTags_Tags_EstateId",
+                        column: x => x.EstateId,
                         principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -181,15 +181,15 @@ namespace RealEstate.Persistance.Migrations
                 column: "StateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EstateTag_TagsId",
-                table: "EstateTag",
-                column: "TagsId");
+                name: "IX_EstateTags_TagId",
+                table: "EstateTags",
+                column: "TagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EstateTag");
+                name: "EstateTags");
 
             migrationBuilder.DropTable(
                 name: "Estates");

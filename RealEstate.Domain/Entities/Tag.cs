@@ -14,6 +14,6 @@ namespace RealEstate.Domain.Entities
         // Garden, elevator, pool ...
         public string Name { get; set; }
         public string? Value { get; set; }
-        public ICollection<Estate> Estates { get; set; }
+        public ICollection<EstateTag> EstateTags { get; set; }
     }
 }

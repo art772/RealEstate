@@ -15,6 +15,7 @@ namespace RealEstate.Application.Common.Interfaces
         DbSet<Genre> Genres { get; set; }
         DbSet<State> States { get; set; }
         DbSet<Tag> Tags { get; set; }
+        DbSet<EstateTag> EstateTags { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
