@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Common\Behaviours\" />
     <Folder Include="Common\Exceptions\" />
-    <Folder Include="Estates\Commands\DeleteEstate\" />
     <Folder Include="Estates\Commands\UpdateEstate\" />
   </ItemGroup>
 
