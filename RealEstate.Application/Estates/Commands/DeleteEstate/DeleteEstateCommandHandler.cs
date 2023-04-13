@@ -17,13 +17,15 @@ namespace RealEstate.Application.Estates.Commands.DeleteEstate
             _context = estateDbContext;
         }
 
-        public async Task Handle(DeleteEstateCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteEstateCommand request, CancellationToken cancellationToken)
         {
             var estate = await _context.Estates.Where(p => p.Id == request.EstateId).FirstOrDefaultAsync();
 
             _context.Estates.Remove(estate);
 
             await _context.SaveChangesAsync(cancellationToken);
+
+            return Unit.Value;
         }
     }
 }
