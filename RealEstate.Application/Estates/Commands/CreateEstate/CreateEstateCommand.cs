@@ -21,5 +21,8 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
         public double EstateArea { get; set; }
         public int YearOfConstruction { get; set; }
 
+
+
+
     }
 }
