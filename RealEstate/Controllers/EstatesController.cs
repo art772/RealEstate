@@ -7,7 +7,7 @@ namespace RealEstate.Controllers
     [Route("api/estates")]
     public class EstatesController : BaseController
     {
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<EstateDetailVm>> GetDetails(int id)
         {
             var vm = await Mediator.Send(new GetEstateDetailQuery() { EstateId = id });

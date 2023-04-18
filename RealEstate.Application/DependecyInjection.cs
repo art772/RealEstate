@@ -19,6 +19,7 @@ namespace RealEstate.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             return services;
         }
     }
