@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
+using RealEstate.Application.Common.Behaviours;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,8 @@ namespace RealEstate.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(LoggingBehaviour<>));
             return services;
         }
     }
