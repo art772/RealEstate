@@ -27,7 +27,7 @@ namespace RealEstate.Application.Common.Behaviours
 
                 if (failures.Count != 0)
                 {
-                    throw new Exception();
+                    throw new ValidationException(failures);
                 }
             }
 

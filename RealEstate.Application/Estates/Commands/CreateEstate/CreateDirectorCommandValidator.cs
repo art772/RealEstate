@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Commands.CreateEstate
 {
-    public class CreateDirectorCommanValidator : AbstractValidator<CreateEstateCommand>
+    public class CreateDirectorCommandValidator : AbstractValidator<CreateEstateCommand>
     {
-        public CreateDirectorCommanValidator()
+        public CreateDirectorCommandValidator()
         {
             RuleFor(x => x.Name).NotEmpty().MaximumLength(10);
         }
