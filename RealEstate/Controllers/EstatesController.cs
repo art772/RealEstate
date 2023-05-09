@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Estates.Commands.CreateEstate;
+using RealEstate.Application.Estates.Commands.DeleteEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Domain.Entities;
 
@@ -38,6 +39,12 @@ namespace RealEstate.Controllers
             {
                 throw new Exception();
             }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEstate(int id)
+        {
+            return Ok(await Mediator.Send(new DeleteEstateCommand { EstateId = id }));
         }
     }
 }

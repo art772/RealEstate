@@ -18,24 +18,35 @@ namespace RealEstate.Application.Estates.Queries.GetEstateDetail
         }
         public async Task<EstateDetailVm> Handle(GetEstateDetailQuery request, CancellationToken cancellationToken)
         {
-            var estate = await _context.Estates.Where(p => p.Id == request.EstateId).FirstOrDefaultAsync(cancellationToken);
+            var estate = await _context.Estates.Where(p => p.Id == request.EstateId && p.StatusId == 1).FirstOrDefaultAsync(cancellationToken);
 
-            var estateVm = new EstateDetailVm()
+            if (estate == null) {
+
+                /* 
+                 * DODAĆ CUSTOM EXCEPTION 
+                 */
+            
+                throw new Exception("Brak nieruchomości o podanym Id");
+            }
+            else
             {
-                Name = estate.Name.ToString(),
-                Description = estate.Description.ToString(),
-                Street = estate.Street.ToString(),
-                StreetNumber = estate.StreetNumber.ToString(),
-                FlatNumber = estate.FlatNumber.ToString(),
-                City = estate.City.ToString(),
-                ZipCode = estate.ZipCode.ToString(),
-                Country = estate.Country.ToString(),
-                Price = estate.Price,
-                EstateArea = estate.EstateArea,
-                YearOfConstruction = estate.YearOfConstruction
-    };
+                var estateVm = new EstateDetailVm()
+                {
+                    Name = estate.Name.ToString(),
+                    Description = estate.Description.ToString(),
+                    Street = estate.Street.ToString(),
+                    StreetNumber = estate.StreetNumber.ToString(),
+                    FlatNumber = estate.FlatNumber.ToString(),
+                    City = estate.City.ToString(),
+                    ZipCode = estate.ZipCode.ToString(),
+                    Country = estate.Country.ToString(),
+                    Price = estate.Price,
+                    EstateArea = estate.EstateArea,
+                    YearOfConstruction = estate.YearOfConstruction
+                };
 
-            return estateVm;
+                return estateVm;
+            }
         }
     }
 }
