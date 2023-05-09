@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,8 @@ namespace RealEstate.Application.Estates.Queries.GetEstateDetail
                 /* 
                  * DODAĆ CUSTOM EXCEPTION 
                  */
-            
-                throw new Exception("Brak nieruchomości o podanym Id");
+
+                throw new InvalidEstateIdException(request.EstateId);
             }
             else
             {
