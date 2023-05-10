@@ -22,11 +22,6 @@ namespace RealEstate.Application.Estates.Queries.GetEstateDetail
             var estate = await _context.Estates.Where(p => p.Id == request.EstateId && p.StatusId == 1).FirstOrDefaultAsync(cancellationToken);
 
             if (estate == null) {
-
-                /* 
-                 * DODAĆ CUSTOM EXCEPTION 
-                 */
-
                 throw new InvalidEstateIdException(request.EstateId);
             }
             else

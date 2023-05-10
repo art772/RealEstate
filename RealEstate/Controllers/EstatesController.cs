@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Estates.Commands.CreateEstate;
 using RealEstate.Application.Estates.Commands.DeleteEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
+using RealEstate.Application.Estates.Queries.GetEstates;
 using RealEstate.Domain.Entities;
 
 namespace RealEstate.Controllers
@@ -16,6 +17,12 @@ namespace RealEstate.Controllers
         public EstatesController(IValidator<CreateEstateCommand> validator)
         {
             _validator = validator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetEstates()
+        {
+            return Ok(await Mediator.Send(new GetEstatesListQuery()));
         }
 
         [HttpGet("{id}")]
