@@ -15,8 +15,6 @@ namespace RealEstate.Application.Estates.Queries.GetEstates
     {    
         private readonly IEstateDbContext _context;
 
-        private EstatesVm _vm { get; set; }
-
         public GetEstatesListQueryHandler(IEstateDbContext context)
         {
             _context = context;
