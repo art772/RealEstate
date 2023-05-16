@@ -14,7 +14,6 @@
     <Folder Include="Estates\Commands\UpdateEstate\" />
     <Folder Include="Users\LoginUser\Command\" />
     <Folder Include="Users\LoginUser\Queries\" />
-    <Folder Include="Users\RegisterUser\Command\" />
     <Folder Include="Users\RegisterUser\Queries\" />
   </ItemGroup>
 

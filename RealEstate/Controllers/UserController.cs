@@ -8,21 +8,11 @@ namespace RealEstate.Controllers
     [ApiController]
     public class UserController : BaseController
     {
-        [HttpGet]
-        public async Task UserList()
-        {
-
-        }
-
         [HttpPost]
-        public async Task RegisterUser()
+        public async Task RegisterUserAsync()
         {
 
         }
 
-        public async Task LoginUser()
-        {
-
-        }
     }
 }

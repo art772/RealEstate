@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Writers;
 using RealEstate.Application;
+using RealEstate.Domain.Common;
+using RealEstate.Domain.Entities;
 using RealEstate.Infrastructure;
 using RealEstate.Persistance;
 using Serilog;
@@ -19,9 +23,9 @@ builder.Logging.AddSerilog(logger);
 
 // Add services to the container.
 
-//builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<EstateDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<UserDbContext>();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrasructure(builder.Configuration);
@@ -61,13 +65,22 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+/* CUSTOM CODE START */
+
+//var userManager = app.Services.GetRequiredService<UserManager<ApplicatonUser>>();
+//var roleManager = app.Services.GetService<RoleManager<IdentityRole>>();
+
+//await UserDbContextSeed.SeedUserRolesAsync(userManager, roleManager);
+
+/* CUSTOM CODE END */
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
