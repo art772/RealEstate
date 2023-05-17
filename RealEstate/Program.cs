@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
@@ -5,11 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Writers;
 using RealEstate.Application;
+using RealEstate.Application.Users.RegisterUser.Command;
 using RealEstate.Domain.Common;
 using RealEstate.Domain.Entities;
 using RealEstate.Infrastructure;
 using RealEstate.Persistance;
 using Serilog;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,7 +54,7 @@ builder.Services.AddAuthentication(options =>
             ValidateAudience = true,
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero,
-            
+
             ValidIssuer = builder.Configuration["JWT:Issuer"],
             ValidAudience = builder.Configuration["JWT:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
@@ -59,20 +62,12 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-/* CUSTOM CODE START */
-
-//var userManager = app.Services.GetRequiredService<UserManager<ApplicatonUser>>();
-//var roleManager = app.Services.GetService<RoleManager<IdentityRole>>();
-
-//await UserDbContextSeed.SeedUserRolesAsync(userManager, roleManager);
-
-/* CUSTOM CODE END */
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

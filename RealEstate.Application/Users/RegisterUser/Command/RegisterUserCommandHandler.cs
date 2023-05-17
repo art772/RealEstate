@@ -10,23 +10,23 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.RegisterUser.Command
 {
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, int>
     {
-        private readonly UserManager<ApplicatonUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IUserDbContext _context;
 
-        public RegisterUserCommandHandler(UserManager<ApplicatonUser> userManager, RoleManager<IdentityRole> roleManager, IUserDbContext context)
+        public RegisterUserCommandHandler(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            _context = context;
         }
-        public async Task<Unit> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+
+        public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new RegisterUserCommand
+            //throw new NotImplementedException();
+
+            var user = new ApplicationUser
             {
-                UsertName = request.UsertName,
                 Email = request.Email,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
@@ -37,11 +37,11 @@ namespace RealEstate.Application.Users.RegisterUser.Command
             if (userWithSameEmail == null)
             {
                 await _userManager.CreateAsync(user, request.Password);
-                return Unit.Value;
+                return 5;
             }
             else
             {
-                return Unit.Value;
+                return 5;
             }
         }
     }

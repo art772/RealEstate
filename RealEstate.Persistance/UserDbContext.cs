@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Persistance
 {
-    public class UserDbContext : IdentityDbContext<ApplicatonUser>
+    public class UserDbContext : IdentityDbContext<ApplicationUser>
     {
         public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
         {

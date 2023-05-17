@@ -12,7 +12,7 @@ namespace RealEstate.Persistance
 {
     public class UserDbContextSeed
     {
-        public static async Task SeedUserRolesAsync(UserManager<ApplicatonUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedUserRolesAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             await roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Administrator.ToString()));
             await roleManager.CreateAsync(new IdentityRole(UserRoles.Roles.Moderator.ToString()));
