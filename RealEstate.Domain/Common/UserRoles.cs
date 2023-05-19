@@ -10,6 +10,7 @@ namespace RealEstate.Domain.Common
     {
         public enum Roles
         {
+            SuperAdministrator,
             Administrator,
             Moderator,
             User
