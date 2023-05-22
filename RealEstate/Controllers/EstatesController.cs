@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Estates.Commands.CreateEstate;
 using RealEstate.Application.Estates.Commands.DeleteEstate;
@@ -31,8 +32,9 @@ namespace RealEstate.Controllers
             var vm = await Mediator.Send(new GetEstateDetailQuery() { EstateId = id });
             return vm;
         }
-
+        
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateEstate(CreateEstateCommand command)
         {
             ValidationResult res = await _validator.ValidateAsync(command);
@@ -48,6 +50,7 @@ namespace RealEstate.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEstate(int id)
         {
