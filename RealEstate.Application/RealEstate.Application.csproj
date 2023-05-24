@@ -11,14 +11,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Behaviours\" />
-    <Folder Include="Common\Exceptions\" />
-    <Folder Include="Estates\Commands\DeleteEstate\" />
     <Folder Include="Estates\Commands\UpdateEstate\" />
+    <Folder Include="Users\LoginUser\Command\" />
+    <Folder Include="Users\LoginUser\Queries\" />
+    <Folder Include="Users\RegisterUser\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.15" />
   </ItemGroup>
 

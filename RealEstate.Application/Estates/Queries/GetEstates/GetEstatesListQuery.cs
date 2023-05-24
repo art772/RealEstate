@@ -1,4 +1,5 @@
-﻿using RealEstate.Domain.Entities;
+﻿using MediatR;
+using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstates
 {
-    public class EstatesVm
+    public class GetEstatesListQuery : IRequest<List<EstateDto>>
     {
-        ICollection<EstateDto> Estates { get; set; }
     }
 }
