@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Users\LoginUser\**" />
+    <EmbeddedResource Remove="Users\LoginUser\**" />
+    <None Remove="Users\LoginUser\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RealEstate.Domain\RealEstate.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Estates\Commands\UpdateEstate\" />
-    <Folder Include="Users\LoginUser\Command\" />
-    <Folder Include="Users\LoginUser\Queries\" />
     <Folder Include="Users\RegisterUser\Queries\" />
   </ItemGroup>
 
