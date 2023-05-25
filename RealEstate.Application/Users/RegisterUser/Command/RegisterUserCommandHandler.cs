@@ -4,6 +4,7 @@ using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,19 @@ namespace RealEstate.Application.Users.RegisterUser.Command
         public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
 
-            var user = await _userManager.FindByEmailAsync(request.Email);
+            var userEmail = await _userManager.FindByEmailAsync(request.Email);
+            var userLogin = await _userManager.FindByNameAsync(request.UserName);
 
-            if (user != null)
+
+            if (userEmail != null)
+            {
+                throw new Exception("User with given e-mail address exists.");
+            }
+            else if (userLogin != null)
+            {
+                throw new Exception("User with given user name exists.");
+            }
+            else
             {
                 IdentityUser newUser = new()
                 {
@@ -37,18 +48,6 @@ namespace RealEstate.Application.Users.RegisterUser.Command
                 await _userManager.CreateAsync(newUser, request.Password);
 
                 return 1;
-            }
-            else if (request.UserName == user.UserName)
-            {
-                throw new Exception("user with given user name exists");
-            }
-            else if (request.Email == user.Email)
-            {
-                throw new Exception("User with given e-mail address exists");
-            }
-            else
-            {
-                return 0;
             }
         }
     }
