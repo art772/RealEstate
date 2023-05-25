@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RealEstate.Controllers
@@ -7,5 +8,11 @@ namespace RealEstate.Controllers
     [ApiController]
     public class JWTController : ControllerBase
     {
+        [HttpGet]
+        [Authorize]
+        public IActionResult PrivateAPI()
+        {
+            return Ok();
+        }
     }
 }
