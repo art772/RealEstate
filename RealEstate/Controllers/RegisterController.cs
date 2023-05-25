@@ -7,7 +7,7 @@ namespace RealEstate.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UserController : BaseController
+    public class RegisterController : BaseController
     {
         [HttpPost]
         public async Task<IActionResult> RegisterUserAsync(RegisterUserCommand command)

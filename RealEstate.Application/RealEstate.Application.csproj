@@ -7,14 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RealEstate.Domain\RealEstate.Domain.csproj" />
+    <Compile Remove="Estates\Commands\UpdateEstate\**" />
+    <Compile Remove="Users\RegisterUser\Queries\**" />
+    <EmbeddedResource Remove="Estates\Commands\UpdateEstate\**" />
+    <EmbeddedResource Remove="Users\RegisterUser\Queries\**" />
+    <None Remove="Estates\Commands\UpdateEstate\**" />
+    <None Remove="Users\RegisterUser\Queries\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Estates\Commands\UpdateEstate\" />
-    <Folder Include="Users\LoginUser\Command\" />
-    <Folder Include="Users\LoginUser\Queries\" />
-    <Folder Include="Users\RegisterUser\Queries\" />
+    <ProjectReference Include="..\RealEstate.Domain\RealEstate.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

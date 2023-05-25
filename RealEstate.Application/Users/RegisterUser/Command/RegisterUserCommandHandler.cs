@@ -23,25 +23,32 @@ namespace RealEstate.Application.Users.RegisterUser.Command
 
         public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            //throw new NotImplementedException();
 
-            var user = new ApplicationUser
+            var user = await _userManager.FindByEmailAsync(request.Email);
+
+            if (user != null)
             {
-                Email = request.Email,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-            };
+                IdentityUser newUser = new()
+                {
+                    UserName = request.UserName,
+                    Email = request.Email
+                };
 
-            var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
+                await _userManager.CreateAsync(newUser, request.Password);
 
-            if (userWithSameEmail == null)
+                return 1;
+            }
+            else if (request.UserName == user.UserName)
             {
-                await _userManager.CreateAsync(user, request.Password);
-                return 5;
+                throw new Exception("user with given user name exists");
+            }
+            else if (request.Email == user.Email)
+            {
+                throw new Exception("User with given e-mail address exists");
             }
             else
             {
-                return 5;
+                return 0;
             }
         }
     }
