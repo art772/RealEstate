@@ -26,9 +26,11 @@ builder.Logging.AddSerilog(logger);
 
 // Add services to the container.
 
-builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+//builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<UserDbContext>();
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
+    .AddEntityFrameworkStores<UserDbContext>();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrasructure(builder.Configuration);
@@ -42,22 +44,23 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
     .AddJwtBearer(o =>
     {
+        o.SaveToken = true; 
         o.RequireHttpsMetadata = false;
-        o.SaveToken = false;
-        o.TokenValidationParameters = new TokenValidationParameters
+        o.TokenValidationParameters = new TokenValidationParameters()
         {
-            ValidateIssuerSigningKey = true,
             ValidateIssuer = true,
             ValidateAudience = true,
-            ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero,
+            //ValidateIssuerSigningKey = true,
+            //ValidateLifetime = true,
+            //ClockSkew = TimeSpan.Zero,
 
-            ValidIssuer = builder.Configuration["JWT:Issuer"],
-            ValidAudience = builder.Configuration["JWT:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+            ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+            ValidAudience = builder.Configuration["JWT:ValidAudience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
         };
     });
 

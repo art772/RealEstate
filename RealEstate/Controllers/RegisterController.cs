@@ -5,7 +5,7 @@ using System.Formats.Asn1;
 
 namespace RealEstate.Controllers
 {
-    [Route("api/users")]
+    [Route("api/register")]
     [ApiController]
     public class RegisterController : BaseController
     {

@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using RealEstate.Application.Common.Interfaces;
+using RealEstate.Domain.Common;
 using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,12 +16,10 @@ namespace RealEstate.Application.Users.RegisterUser.Command
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, int>
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RegisterUserCommandHandler(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public RegisterUserCommandHandler(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
         }
 
         public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -46,6 +46,8 @@ namespace RealEstate.Application.Users.RegisterUser.Command
                 };
 
                 await _userManager.CreateAsync(newUser, request.Password);
+
+                await _userManager.AddToRoleAsync(newUser, "User");
 
                 return 1;
             }
