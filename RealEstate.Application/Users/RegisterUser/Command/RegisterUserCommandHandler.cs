@@ -15,9 +15,9 @@ namespace RealEstate.Application.Users.RegisterUser.Command
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, int>
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RegisterUserCommandHandler(UserManager<IdentityUser> userManager)
+        public RegisterUserCommandHandler(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
@@ -39,17 +39,19 @@ namespace RealEstate.Application.Users.RegisterUser.Command
             }
             else
             {
-                IdentityUser newUser = new()
+                ApplicationUser newUser = new()
                 {
                     UserName = request.UserName,
-                    Email = request.Email
+                    Email = request.Email,
+                    FirstName = request.FirstName,
+                    LastName = request.LastName
                 };
 
                 await _userManager.CreateAsync(newUser, request.Password);
 
                 await _userManager.AddToRoleAsync(newUser, "User");
 
-                return 1;
+                return newUser.Id;
             }
         }
     }

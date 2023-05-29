@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Common;
@@ -13,7 +14,8 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Persistance
 {
-    public class EstateDbContext : DbContext, IEstateDbContext
+
+    public class EstateDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>, IEstateDbContext
     {
         private readonly IDateTime _dateTime;
 
@@ -25,7 +27,7 @@ namespace RealEstate.Persistance
         {
             _dateTime = dateTime;
         }
-
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Estate> Estates { get; set; }
         public DbSet<Genre> Genres { get; set; }
@@ -35,6 +37,8 @@ namespace RealEstate.Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
 
@@ -51,14 +55,15 @@ namespace RealEstate.Persistance
                 .WithMany(et => et.EstateTags)
                 .HasForeignKey(t => t.EstateId);
 
+
             modelBuilder.SeedData();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach(var entry in ChangeTracker.Entries<AuditableEntity>())
+            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
             {
-                switch(entry.State)
+                switch (entry.State)
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedBy = string.Empty;

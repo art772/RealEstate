@@ -22,6 +22,215 @@ namespace RealEstate.Persistance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("RealEstate.Domain.Entities.ApplicationUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
             modelBuilder.Entity("RealEstate.Domain.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -64,16 +273,16 @@ namespace RealEstate.Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7296),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2167),
                             Name = "Sprzedaż",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7334),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2215),
                             Name = "Wynajem",
                             StatusId = 1
                         });
@@ -86,6 +295,9 @@ namespace RealEstate.Persistance.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("ApplicationUserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -163,6 +375,8 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationUserId");
+
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("GenreId");
@@ -178,8 +392,8 @@ namespace RealEstate.Persistance.Migrations
                             CategoryId = 1,
                             City = "Poznań",
                             Country = "Polska",
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7600),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2691),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ultricies nisl.",
                             EstateArea = 150.0,
                             FlatNumber = "5",
@@ -252,64 +466,64 @@ namespace RealEstate.Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7499),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2449),
                             Name = "Dom",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7505),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2456),
                             Name = "Mieszkanie",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7507),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2459),
                             Name = "Kawalerka",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7510),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2463),
                             Name = "Apartament",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7512),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2466),
                             Name = "Biuro",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 6,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7514),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2469),
                             Name = "Pokój",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 7,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7517),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2473),
                             Name = "Lokal usługowy",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 8,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7520),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2476),
                             Name = "Garaż",
                             StatusId = 1
                         });
@@ -357,40 +571,40 @@ namespace RealEstate.Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7545),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2505),
                             Name = "Dostępne",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7548),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2510),
                             Name = "Niedostępne",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7550),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2513),
                             Name = "Zarezerwowane",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7552),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2517),
                             Name = "Wynajęte",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7555),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2520),
                             Name = "Sprzedane",
                             StatusId = 1
                         });
@@ -441,47 +655,102 @@ namespace RealEstate.Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7574),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2543),
                             Name = "Ogród",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7576),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2554),
                             Name = "Taras",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7579),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2557),
                             Name = "Winda",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7581),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2561),
                             Name = "Basen",
                             StatusId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 4, 5, 19, 37, 42, 13, DateTimeKind.Local).AddTicks(7584),
+                            CreatedBy = "art772",
+                            CreatedDate = new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2564),
                             Name = "Piętrowy",
                             StatusId = 1
                         });
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.HasOne("RealEstate.Domain.Entities.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.HasOne("RealEstate.Domain.Entities.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RealEstate.Domain.Entities.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.HasOne("RealEstate.Domain.Entities.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RealEstate.Domain.Entities.Estate", b =>
                 {
+                    b.HasOne("RealEstate.Domain.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("Estates")
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("RealEstate.Domain.Entities.Category", "Category")
                         .WithMany("Estates")
                         .HasForeignKey("CategoryId")
@@ -499,6 +768,8 @@ namespace RealEstate.Persistance.Migrations
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
 
                     b.Navigation("Category");
 
@@ -524,6 +795,11 @@ namespace RealEstate.Persistance.Migrations
                     b.Navigation("Estate");
 
                     b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("RealEstate.Domain.Entities.ApplicationUser", b =>
+                {
+                    b.Navigation("Estates");
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Category", b =>

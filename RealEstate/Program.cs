@@ -2,6 +2,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Writers;
@@ -26,11 +28,10 @@ builder.Logging.AddSerilog(logger);
 
 // Add services to the container.
 
-//builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+builder.Services.AddDbContext<EstateDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EstateDatabase")));
 
-
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
-    .AddEntityFrameworkStores<UserDbContext>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options => options.SignIn.RequireConfirmedEmail = false)
+    .AddEntityFrameworkStores<EstateDbContext>();
 
 builder.Services.AddApplication();
 builder.Services.AddInfrasructure(builder.Configuration);
@@ -54,10 +55,6 @@ builder.Services.AddAuthentication(options =>
         {
             ValidateIssuer = true,
             ValidateAudience = true,
-            //ValidateIssuerSigningKey = true,
-            //ValidateLifetime = true,
-            //ClockSkew = TimeSpan.Zero,
-
             ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
             ValidAudience = builder.Configuration["JWT:ValidAudience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
@@ -77,9 +74,8 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     try
     {
-        //var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        await UserDbContextSeed.SeedUserRolesAsync(roleManager);
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
+        await EstateDbContextSeed.SeedUserRolesAsync(roleManager);
     }
     catch (Exception)
     {

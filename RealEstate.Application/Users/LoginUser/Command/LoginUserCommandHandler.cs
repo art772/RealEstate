@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,10 +15,10 @@ namespace RealEstate.Application.Users.LoginUser.Command
 {
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, object>
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
 
-        public LoginUserCommandHandler(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public LoginUserCommandHandler(UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;

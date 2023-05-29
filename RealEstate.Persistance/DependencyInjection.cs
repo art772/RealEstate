@@ -15,9 +15,6 @@ namespace RealEstate.Persistance
     {
         public static IServiceCollection AddPersistance(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<EstateDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EstateDatabase")));
-            services.AddDbContext<UserDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EstateDatabase")));
-
             services.AddScoped<IEstateDbContext, EstateDbContext>();
             return services;
         }

@@ -13,41 +13,41 @@ namespace RealEstate.Persistance.SeedData
         public static void SeedData(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(
-                new Category() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Sprzedaż" },
-                new Category() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Wynajem" }
+                new Category() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Sprzedaż" },
+                new Category() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Wynajem" }
                 );
 
             modelBuilder.Entity<Genre>().HasData(
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Dom" },
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Mieszkanie" },
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 3, Name = "Kawalerka" },
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 4, Name = "Apartament" },
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 5, Name = "Biuro" },
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 6, Name = "Pokój" },
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 7, Name = "Lokal usługowy" },
-                new Genre() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 8, Name = "Garaż" }
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Dom" },
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Mieszkanie" },
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 3, Name = "Kawalerka" },
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 4, Name = "Apartament" },
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 5, Name = "Biuro" },
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 6, Name = "Pokój" },
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 7, Name = "Lokal usługowy" },
+                new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 8, Name = "Garaż" }
                 );
 
             modelBuilder.Entity<State>().HasData(
-                new State() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Dostępne" },
-                new State() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Niedostępne" },
-                new State() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 3, Name = "Zarezerwowane" },
-                new State() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 4, Name = "Wynajęte" },
-                new State() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 5, Name = "Sprzedane" }
+                new State() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Dostępne" },
+                new State() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Niedostępne" },
+                new State() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 3, Name = "Zarezerwowane" },
+                new State() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 4, Name = "Wynajęte" },
+                new State() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 5, Name = "Sprzedane" }
                 );
 
             modelBuilder.Entity<Tag>().HasData(
-                new Tag() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Ogród" },
-                new Tag() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Taras" },
-                new Tag() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 3, Name = "Winda" },
-                new Tag() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 4, Name = "Basen" },
-                new Tag() { CreatedBy = "Admin", StatusId = 1, CreatedDate = DateTime.Now, Id = 5, Name = "Piętrowy" }
+                new Tag() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 1, Name = "Ogród" },
+                new Tag() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 2, Name = "Taras" },
+                new Tag() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 3, Name = "Winda" },
+                new Tag() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 4, Name = "Basen" },
+                new Tag() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 5, Name = "Piętrowy" }
                 );
 
             modelBuilder.Entity<Estate>().HasData(
                 new Estate()
                 {
-                    CreatedBy = "Admin",
+                    CreatedBy = "art772",
                     StatusId = 1,
                     CreatedDate = DateTime.Now,
                     Id = 1,

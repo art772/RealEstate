@@ -35,5 +35,8 @@ namespace RealEstate.Domain.Entities
 
         // One Estate has many Tags
         public ICollection<EstateTag> EstateTags { get; set; } // Garden, elevator, pool ...
+
+        public int ?ApplicationUserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
