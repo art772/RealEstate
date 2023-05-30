@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RealEstate.Application.Users.RegisterUser.Command;
-using System.Formats.Asn1;
+﻿using Microsoft.AspNetCore.Mvc;
+using RealEstate.Application.Users.Commands.RegisterUser;
 
-namespace RealEstate.Controllers
+namespace RealEstate.Controllers.User
 {
     [Route("api/register")]
     [ApiController]

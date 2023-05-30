@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Users.LoginUser.Command
+namespace RealEstate.Application.Users.Commands.LoginUser
 {
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, object>
     {

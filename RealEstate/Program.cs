@@ -1,20 +1,12 @@
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Writers;
 using RealEstate.Application;
-using RealEstate.Application.Users.RegisterUser.Command;
-using RealEstate.Domain.Common;
 using RealEstate.Domain.Entities;
 using RealEstate.Infrastructure;
 using RealEstate.Persistance;
 using Serilog;
-using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);

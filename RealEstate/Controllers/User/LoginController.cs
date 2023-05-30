@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RealEstate.Application.Users.LoginUser.Command;
+﻿using Microsoft.AspNetCore.Mvc;
+using RealEstate.Application.Users.Commands.LoginUser;
 
-namespace RealEstate.Controllers
+namespace RealEstate.Controllers.User
 {
     [Route("api/login")]
     [ApiController]

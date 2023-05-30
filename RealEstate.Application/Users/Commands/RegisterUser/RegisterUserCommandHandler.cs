@@ -1,17 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using RealEstate.Application.Common.Interfaces;
-using RealEstate.Domain.Common;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RealEstate.Application.Users.RegisterUser.Command
+namespace RealEstate.Application.Users.Commands.RegisterUser
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, int>
     {
@@ -49,7 +40,7 @@ namespace RealEstate.Application.Users.RegisterUser.Command
 
                 await _userManager.CreateAsync(newUser, request.Password);
 
-                await _userManager.AddToRoleAsync(newUser, "User");
+                await _userManager.AddToRoleAsync(newUser, "SuperAdministrator");
 
                 return newUser.Id;
             }

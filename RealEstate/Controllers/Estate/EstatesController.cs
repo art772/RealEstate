@@ -8,7 +8,7 @@ using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
 using RealEstate.Domain.Entities;
 
-namespace RealEstate.Controllers
+namespace RealEstate.Controllers.Estate
 {
     [Route("api/estates")]
     public class EstatesController : BaseController
@@ -32,14 +32,14 @@ namespace RealEstate.Controllers
             var vm = await Mediator.Send(new GetEstateDetailQuery() { EstateId = id });
             return vm;
         }
-        
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> CreateEstate(CreateEstateCommand command)
         {
             ValidationResult res = await _validator.ValidateAsync(command);
 
-            if(res.IsValid)
+            if (res.IsValid)
             {
                 var result = await Mediator.Send(command);
                 return Ok(result);

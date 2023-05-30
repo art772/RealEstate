@@ -3,14 +3,7 @@ using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
 using RealEstate.Application.Common.Behaviours;
-using RealEstate.Application.Users.RegisterUser.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application
 {

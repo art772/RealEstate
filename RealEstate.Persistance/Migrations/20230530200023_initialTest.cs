@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RealEstate.Persistance.Migrations
 {
-    public partial class EstateTablesInitial : Migration
+    public partial class initialTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,6 +32,7 @@ namespace RealEstate.Persistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsBanned = table.Column<bool>(type: "bit", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -325,8 +326,8 @@ namespace RealEstate.Persistance.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId" },
                 values: new object[,]
                 {
-                    { 1, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2167), null, null, null, null, "Sprzedaż", 1 },
-                    { 2, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2215), null, null, null, null, "Wynajem", 1 }
+                    { 1, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2031), null, null, null, null, "Sprzedaż", 1 },
+                    { 2, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2075), null, null, null, null, "Wynajem", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -334,14 +335,14 @@ namespace RealEstate.Persistance.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId" },
                 values: new object[,]
                 {
-                    { 1, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2449), null, null, null, null, "Dom", 1 },
-                    { 2, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2456), null, null, null, null, "Mieszkanie", 1 },
-                    { 3, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2459), null, null, null, null, "Kawalerka", 1 },
-                    { 4, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2463), null, null, null, null, "Apartament", 1 },
-                    { 5, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2466), null, null, null, null, "Biuro", 1 },
-                    { 6, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2469), null, null, null, null, "Pokój", 1 },
-                    { 7, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2473), null, null, null, null, "Lokal usługowy", 1 },
-                    { 8, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2476), null, null, null, null, "Garaż", 1 }
+                    { 1, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2223), null, null, null, null, "Dom", 1 },
+                    { 2, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2230), null, null, null, null, "Mieszkanie", 1 },
+                    { 3, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2234), null, null, null, null, "Kawalerka", 1 },
+                    { 4, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2237), null, null, null, null, "Apartament", 1 },
+                    { 5, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2239), null, null, null, null, "Biuro", 1 },
+                    { 6, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2242), null, null, null, null, "Pokój", 1 },
+                    { 7, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2244), null, null, null, null, "Lokal usługowy", 1 },
+                    { 8, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2247), null, null, null, null, "Garaż", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -349,11 +350,11 @@ namespace RealEstate.Persistance.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId" },
                 values: new object[,]
                 {
-                    { 1, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2505), null, null, null, null, "Dostępne", 1 },
-                    { 2, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2510), null, null, null, null, "Niedostępne", 1 },
-                    { 3, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2513), null, null, null, null, "Zarezerwowane", 1 },
-                    { 4, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2517), null, null, null, null, "Wynajęte", 1 },
-                    { 5, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2520), null, null, null, null, "Sprzedane", 1 }
+                    { 1, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2270), null, null, null, null, "Dostępne", 1 },
+                    { 2, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2275), null, null, null, null, "Niedostępne", 1 },
+                    { 3, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2277), null, null, null, null, "Zarezerwowane", 1 },
+                    { 4, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2280), null, null, null, null, "Wynajęte", 1 },
+                    { 5, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2282), null, null, null, null, "Sprzedane", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -361,17 +362,17 @@ namespace RealEstate.Persistance.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId", "Value" },
                 values: new object[,]
                 {
-                    { 1, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2543), null, null, null, null, "Ogród", 1, null },
-                    { 2, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2554), null, null, null, null, "Taras", 1, null },
-                    { 3, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2557), null, null, null, null, "Winda", 1, null },
-                    { 4, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2561), null, null, null, null, "Basen", 1, null },
-                    { 5, "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2564), null, null, null, null, "Piętrowy", 1, null }
+                    { 1, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2345), null, null, null, null, "Ogród", 1, null },
+                    { 2, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2350), null, null, null, null, "Taras", 1, null },
+                    { 3, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2353), null, null, null, null, "Winda", 1, null },
+                    { 4, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2355), null, null, null, null, "Basen", 1, null },
+                    { 5, "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2358), null, null, null, null, "Piętrowy", 1, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Estates",
                 columns: new[] { "Id", "ApplicationUserId", "CategoryId", "City", "Country", "CreatedBy", "CreatedDate", "Description", "EstateArea", "FlatNumber", "GenreId", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "Price", "StateId", "StatusId", "Street", "StreetNumber", "YearOfConstruction", "ZipCode" },
-                values: new object[] { 1, null, 1, "Poznań", "Polska", "art772", new DateTime(2023, 5, 29, 23, 32, 16, 241, DateTimeKind.Local).AddTicks(2691), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ultricies nisl.", 150.0, "5", 2, null, null, null, null, "Mieszkanie na sprzedaż 150m2", 500000.0, 1, 1, "Dąbrowskiego", "10", 2022, "60-123" });
+                values: new object[] { 1, null, 1, "Poznań", "Polska", "art772", new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2375), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ultricies nisl.", 150.0, "5", 2, null, null, null, null, "Mieszkanie na sprzedaż 150m2", 500000.0, 1, 1, "Dąbrowskiego", "10", 2022, "60-123" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
