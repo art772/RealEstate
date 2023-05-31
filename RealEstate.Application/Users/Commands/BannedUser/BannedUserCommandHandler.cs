@@ -23,7 +23,7 @@ namespace RealEstate.Application.Users.Commands.BannedUser
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
 
-            if (user != null && user.IsBanned == null)
+            if (user != null && user.IsBanned == false)
             {
                 user.IsBanned = true;
             }

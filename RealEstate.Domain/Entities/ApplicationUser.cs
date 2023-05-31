@@ -11,7 +11,7 @@ namespace RealEstate.Domain.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool ?IsBanned { get; set; }
+        public bool IsBanned { get; set; }
         public virtual ICollection<Estate> ?Estates { get; set; }
     }
 }

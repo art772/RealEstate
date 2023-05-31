@@ -67,7 +67,10 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
+        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+
         await EstateDbContextSeed.SeedUserRolesAsync(roleManager);
+        await EstateDbContextSeed.SeedDefaultSuperAdmin(userManager);
     }
     catch (Exception)
     {

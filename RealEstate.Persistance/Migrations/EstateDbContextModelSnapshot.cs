@@ -270,7 +270,7 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -386,7 +386,7 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasIndex("StateId");
 
-                    b.ToTable("Estates");
+                    b.ToTable("Estates", (string)null);
 
                     b.HasData(
                         new
@@ -424,7 +424,7 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("EstateTags");
+                    b.ToTable("EstateTags", (string)null);
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Genre", b =>
@@ -463,7 +463,7 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
 
                     b.HasData(
                         new
@@ -568,7 +568,7 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("States");
+                    b.ToTable("States", (string)null);
 
                     b.HasData(
                         new
@@ -652,7 +652,7 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
 
                     b.HasData(
                         new

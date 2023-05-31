@@ -35,12 +35,13 @@ namespace RealEstate.Application.Users.Commands.RegisterUser
                     UserName = request.UserName,
                     Email = request.Email,
                     FirstName = request.FirstName,
-                    LastName = request.LastName
+                    LastName = request.LastName,
+                    IsBanned = false
                 };
 
                 await _userManager.CreateAsync(newUser, request.Password);
 
-                await _userManager.AddToRoleAsync(newUser, "SuperAdministrator");
+                await _userManager.AddToRoleAsync(newUser, "User");
 
                 return newUser.Id;
             }
