@@ -17,7 +17,7 @@ namespace RealEstate.Application.Users.Queries.BannedUserList
         public BannedUserListQueryHandler(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
-    }
+        }
 
         public async Task<List<BannedUserDto>> Handle(BannedUserListQuery request, CancellationToken cancellationToken)
         {
