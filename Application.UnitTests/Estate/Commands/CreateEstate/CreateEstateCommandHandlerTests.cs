@@ -27,7 +27,17 @@ namespace Application.UnitTests.Estate.Commands.CreateEstate
         {
             var command = new CreateEstateCommand()
             {
-                // Dane nowej nieruchomości - nazwa, cena, itd..
+                Name = "Dom 150m2, Naramowice 15, Poznań",
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada nec sapien nec sollicitudin. Cras a metus nec nibh ultrices fringilla.",
+                Street = "Naramowicka",
+                StreetNumber = "15",
+                FlatNumber = "",
+                City = "Poznań",
+                ZipCode = "60-987",
+                Country = "Poland",
+                Price = 1500000.00,
+                EstateArea = 150.00,
+                YearOfConstruction = 2000
             };
 
             var result = await _handler.Handle(command, CancellationToken.None);

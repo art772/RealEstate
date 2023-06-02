@@ -28,10 +28,30 @@ namespace Application.UnitTests.Common
 
             context.Database.EnsureCreated();
 
-            var estate = new RealEstate.Domain.Entities.Estate() { 
+            var category = new Category() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 3, Name = "Wynajem krótkoteminowy" };
+
+            context.Categories.Add(category);
+
+            var genre = new Genre() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 9, Name = "Działka budowlana" };
+
+            context.Genres.Add(genre);
+
+            var state = new State() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 6, Name = "Nieokreślone" };
+
+            context.States.Add(state);
+
+            var tag = new Tag() { CreatedBy = "art772", StatusId = 1, CreatedDate = DateTime.Now, Id = 6, Name = "Balkon" };
+
+            context.Tags.Add(tag);
+
+            var estate = new RealEstate.Domain.Entities.Estate()
+            {
+                CreatedBy = "art772",
+                StatusId = 1,
+                CreatedDate = DateTime.Now,
                 Id = 2,
                 Name = "Mieszkanie 80m2, Polna 111, Poznań",
-                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada nec sapien nec sollicitudin. Cras a metus nec nibh ultrices fringilla. Curabitur pellentesque viverra pellentesque. Nam mauris diam, accumsan a augue et, euismod ornare nibh. Quisque tortor risus, mattis ut arcu ac, sagittis posuere mi. Vivamus dui nunc, placerat eget lacus vitae, mollis porta augue. Ut est nibh, posuere eu nisl vel, efficitur faucibus elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam egestas quam in tortor fringilla lobortis sed quis eros. Etiam vel felis vel nisi condimentum hendrerit. Morbi vitae tellus quis elit posuere vestibulum. Proin varius diam vitae massa tristique, id mattis nunc pellentesque. Nullam posuere a orci consequat luctus. Vestibulum ut ullamcorper velit.\r\n\r\n",
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada nec sapien nec sollicitudin. Cras a metus nec nibh ultrices fringilla.",
                 Street = "Polna",
                 StreetNumber = "111",
                 FlatNumber = "1",
@@ -40,7 +60,10 @@ namespace Application.UnitTests.Common
                 Country = "Poland",
                 Price = 500000.00,
                 EstateArea = 80.00,
-                YearOfConstruction = 2023
+                YearOfConstruction = 2023,
+                CategoryId = 3,
+                GenreId = 9,
+                StateId = 6
             };
 
             context.Estates.Add(estate);
