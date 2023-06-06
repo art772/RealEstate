@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Interfaces;
+using RealEstate.Application.Estates.Commands.CreateEstate;
 using RealEstate.Domain.Common;
 using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RealEstate.Persistance

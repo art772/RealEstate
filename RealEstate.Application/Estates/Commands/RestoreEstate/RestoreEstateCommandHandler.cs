@@ -13,9 +13,15 @@ namespace RealEstate.Application.Estates.Commands.RestoreEstate
     public class RestoreEstateCommandHandler : IRequestHandler<RestoreEstateCommand, int>
     {
         private readonly IEstateDbContext _context;
+
+        public RestoreEstateCommandHandler(IEstateDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<int> Handle(RestoreEstateCommand request, CancellationToken cancellationToken)
         {
-            var estate = await _context.Estates.Where(p => p.Id == request.EstateId).FirstOrDefaultAsync(cancellationToken);
+            var estate = await _context.Estates.SingleOrDefaultAsync(p => p.Id == request.EstateId);
 
             if (estate != null)
             {
@@ -26,7 +32,7 @@ namespace RealEstate.Application.Estates.Commands.RestoreEstate
                 throw new Exception($"Estate with this Id: {request.EstateId} is not deleted");
             }
 
-            _context.Estates.Add(estate);
+            _context.Estates.Update(estate);
 
             await _context.SaveChangesAsync(cancellationToken);
 

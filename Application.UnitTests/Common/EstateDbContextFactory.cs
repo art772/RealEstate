@@ -47,7 +47,7 @@ namespace Application.UnitTests.Common
             var estate = new RealEstate.Domain.Entities.Estate()
             {
                 CreatedBy = "art772",
-                StatusId = 1,
+                StatusId = 0,
                 CreatedDate = DateTime.Now,
                 Id = 2,
                 Name = "Mieszkanie 80m2, Polna 111, Poznań",

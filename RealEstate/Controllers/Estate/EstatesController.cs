@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Estates.Commands.CreateEstate;
 using RealEstate.Application.Estates.Commands.DeleteEstate;
+using RealEstate.Application.Estates.Commands.RestoreEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
 using RealEstate.Domain.Entities;
@@ -34,7 +35,7 @@ namespace RealEstate.Controllers.Estate
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateEstate(CreateEstateCommand command)
         {
             ValidationResult res = await _validator.ValidateAsync(command);
@@ -50,11 +51,18 @@ namespace RealEstate.Controllers.Estate
             }
         }
 
-        [Authorize]
         [HttpDelete("{id}")]
+        //[Authorize]
         public async Task<IActionResult> DeleteEstate(int id)
         {
             return Ok(await Mediator.Send(new DeleteEstateCommand { EstateId = id }));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> RestoreEstate(RestoreEstateCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return Ok(result);
         }
     }
 }
