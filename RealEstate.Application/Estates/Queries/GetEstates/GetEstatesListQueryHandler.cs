@@ -24,7 +24,14 @@ namespace RealEstate.Application.Estates.Queries.GetEstates
         {
             var estates = await _context.Estates.Where(p => p.StatusId == 1).ToListAsync(cancellationToken);
 
-            return MapEstatesToVm(estates);
+            if(estates.Any())
+            {
+                return MapEstatesToVm(estates);
+            }
+            else
+            {
+                throw new Exception("Estates list is empty");
+            }
         }
 
         private List<EstateDto> MapEstatesToVm(List<Estate> estates)
