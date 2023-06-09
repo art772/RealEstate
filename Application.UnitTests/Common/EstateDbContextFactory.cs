@@ -68,6 +68,30 @@ namespace Application.UnitTests.Common
 
             context.Estates.Add(estate);
 
+            var estateToDelete = new RealEstate.Domain.Entities.Estate()
+            {
+                CreatedBy = "art772",
+                StatusId = 1,
+                CreatedDate = DateTime.Now,
+                Id = 88,
+                Name = "Mieszkanie 80m2, Polna 111, Poznań",
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada nec sapien nec sollicitudin. Cras a metus nec nibh ultrices fringilla.",
+                Street = "Polna",
+                StreetNumber = "111",
+                FlatNumber = "1",
+                City = "Poznań",
+                ZipCode = "60-123",
+                Country = "Poland",
+                Price = 500000.00,
+                EstateArea = 80.00,
+                YearOfConstruction = 2023,
+                CategoryId = 3,
+                GenreId = 9,
+                StateId = 6
+            };
+
+            context.Estates.Add(estateToDelete);
+
             context.SaveChanges();
 
             return mock;
