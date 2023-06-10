@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RealEstate.Application.Users.Queries.UsersList;
+using RealEstate.Application.Users.Queries.GetUsers;
 
 namespace RealEstate.Controllers.Admin
 {
@@ -13,7 +12,7 @@ namespace RealEstate.Controllers.Admin
         [Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> GetUsers()
         {
-            return Ok(await Mediator.Send(new UserListQuery()));
+            return Ok(await Mediator.Send(new GetUsersListQuery()));
         }
     }
 }

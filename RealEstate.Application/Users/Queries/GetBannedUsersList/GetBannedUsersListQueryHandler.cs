@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Users.Queries.BannedUserList
+namespace RealEstate.Application.Users.Queries.GetBannedUsersList
 {
-    public class BannedUserListQueryHandler : IRequestHandler<BannedUserListQuery, List<BannedUserDto>>
+    public class GetBannedUsersListQueryHandler : IRequestHandler<GetBannedUsersListQuery, List<BannedUserDto>>
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public BannedUserListQueryHandler(UserManager<ApplicationUser> userManager)
+        public GetBannedUsersListQueryHandler(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
 
-        public async Task<List<BannedUserDto>> Handle(BannedUserListQuery request, CancellationToken cancellationToken)
+        public async Task<List<BannedUserDto>> Handle(GetBannedUsersListQuery request, CancellationToken cancellationToken)
         {
             var users = await _userManager.Users.Where(p => p.IsBanned == true).ToListAsync(cancellationToken);
 

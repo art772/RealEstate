@@ -8,17 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Users.Queries.UsersList
+namespace RealEstate.Application.Users.Queries.GetUsers
 {
-    public class UserListQueryHandler : IRequestHandler<UserListQuery, List<UserListDto>>
+    public class GetUsersListQueryHandler : IRequestHandler<GetUsersListQuery, List<UserListDto>>
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserListQueryHandler(UserManager<ApplicationUser> userManager)
+        public GetUsersListQueryHandler(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
-        public async Task<List<UserListDto>> Handle(UserListQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserListDto>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
         {
             var users = await _userManager.Users.ToListAsync(cancellationToken);
 

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Users.Queries.BannedUserList
+namespace RealEstate.Application.Users.Queries.GetBannedUsersList
 {
-    public class BannedUserListQuery : IRequest<List<BannedUserDto>>
+    public class GetBannedUsersListQuery : IRequest<List<BannedUserDto>>
     {
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Users.Commands.BannedUser;
-using RealEstate.Application.Users.Queries.BannedUserList;
+using RealEstate.Application.Users.Queries.GetBannedUsersList;
 
 namespace RealEstate.Controllers.Admin
 {
@@ -14,7 +13,7 @@ namespace RealEstate.Controllers.Admin
         [HttpGet]
         public async Task<IActionResult> GetBannedUsersList()
         {
-            return Ok(await Mediator.Send(new BannedUserListQuery()));
+            return Ok(await Mediator.Send(new GetBannedUsersListQuery()));
         }
 
         [HttpPost]
