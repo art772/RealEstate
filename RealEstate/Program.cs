@@ -29,6 +29,8 @@ builder.Services.AddApplication();
 builder.Services.AddInfrasructure(builder.Configuration);
 builder.Services.AddPersistance(builder.Configuration);
 
+builder.Services.AddHttpContextAccessor();
+
 /*
  * Add Jwt
  */

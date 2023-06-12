@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Users.Commands.LoginUser;
 
-namespace RealEstate.Controllers.User
+namespace RealEstate.Controllers.Auth
 {
-    [Route("api/login")]
+    [Route("api/auth/login")]
     [ApiController]
     public class LoginController : BaseController
     {

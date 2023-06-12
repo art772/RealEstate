@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Users.Commands.RegisterUser;
 
-namespace RealEstate.Controllers.User
+namespace RealEstate.Controllers.Auth
 {
-    [Route("api/register")]
+    [Route("api/auth/register")]
     [ApiController]
     public class RegisterController : BaseController
     {
