@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
@@ -19,9 +20,9 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CreateEstateCommandHandler(IEstateDbContext estateDbContext, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
+        public CreateEstateCommandHandler(IEstateDbContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
-            _context = estateDbContext;
+            _context = context;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }

@@ -35,7 +35,7 @@ namespace RealEstate.Controllers.Estate
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> CreateEstate(CreateEstateCommand command)
         {
             ValidationResult res = await _validator.ValidateAsync(command);
@@ -52,7 +52,7 @@ namespace RealEstate.Controllers.Estate
         }
 
         [HttpDelete("{id}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> DeleteEstate(int id)
         {
             return Ok(await Mediator.Send(new DeleteEstateCommand { EstateId = id }));
