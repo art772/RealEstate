@@ -7,7 +7,7 @@ using RealEstate.Application.Users.Queries.GetUsers;
 
 namespace RealEstate.Controllers.Admin
 {
-    [Route("api/admin")]
+    [Route("api/admin/[action]")]
     [Authorize(Roles = "SuperAdministrator,Administrator")]
     public class AdminController : BaseController
     {

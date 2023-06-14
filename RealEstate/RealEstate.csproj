@@ -21,4 +21,11 @@
     <ProjectReference Include="..\RealEstate.Persistance\RealEstate.Persistance.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Category\" />
+    <Folder Include="Controllers\Genre\" />
+    <Folder Include="Controllers\State\" />
+    <Folder Include="Controllers\Tag\" />
+  </ItemGroup>
+
 </Project>
