@@ -7,7 +7,6 @@ using RealEstate.Application.Estates.Commands.DeleteEstate;
 using RealEstate.Application.Estates.Commands.RestoreEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
-using RealEstate.Domain.Entities;
 
 namespace RealEstate.Controllers.Estate
 {
@@ -59,10 +58,19 @@ namespace RealEstate.Controllers.Estate
         }
 
         [HttpPut]
-        public async Task<IActionResult> RestoreEstate(RestoreEstateCommand command)
+        [Authorize]
+        public async Task<IActionResult> UpdateEstate()
         {
-            var result = await Mediator.Send(command);
-            return Ok(result);
+            return Ok();
+        }
+
+        [HttpPatch]
+        [Authorize(Roles = "SuperAdministrator,Administrator")]
+        public async Task<int> RestoreEstate(RestoreEstateCommand command)
+        {
+            await Mediator.Send(command);
+
+            return command.EstateId;
         }
     }
 }
