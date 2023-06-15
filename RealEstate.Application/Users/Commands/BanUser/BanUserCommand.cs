@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Users.Commands.BannedUser
+namespace RealEstate.Application.Users.Commands.BanUser
 {
-    public class BannedUserCommand : IRequest<int>
+    public class BanUserCommand : IRequest<int>
     {
         public string UserName { get; set; }
-        public bool IsBanned { get; set;}
     }
 }

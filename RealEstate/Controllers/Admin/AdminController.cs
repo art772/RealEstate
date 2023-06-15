@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RealEstate.Application.Users.Commands.BannedUser;
+using RealEstate.Application.Users.Commands.BanUser;
+using RealEstate.Application.Users.Commands.UnbanUser;
 using RealEstate.Application.Users.Queries.GetBannedUsersList;
 using RealEstate.Application.Users.Queries.GetUsers;
 
@@ -17,8 +17,8 @@ namespace RealEstate.Controllers.Admin
             return Ok(await Mediator.Send(new GetUsersListQuery()));
         }
 
-        [HttpGet]
-        public async Task<IActionResult> UserDetails()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserDetails()
         {
             return Ok();
         }
@@ -30,13 +30,13 @@ namespace RealEstate.Controllers.Admin
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBanedUsers()
+        public async Task<IActionResult> GetBannedUsers()
         {
             return Ok(await Mediator.Send(new GetBannedUsersListQuery()));
         }
 
         [HttpPatch]
-        public async Task<IActionResult> BannedUser(BannedUserCommand command)
+        public async Task<IActionResult> BanUser(BanUserCommand command)
         {
             var result = await Mediator.Send(command);
 
@@ -44,9 +44,11 @@ namespace RealEstate.Controllers.Admin
         }
 
         [HttpPatch]
-        public async Task<IActionResult> UnbanUser()
+        public async Task<IActionResult> UnbanUser(UnbanUserCommand command)
         {
-            return Ok();
+            var result = await Mediator.Send(command);
+
+            return Ok(result);
         }
     }
 }
