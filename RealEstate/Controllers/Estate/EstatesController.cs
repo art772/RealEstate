@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Estates.Commands.CreateEstate;
 using RealEstate.Application.Estates.Commands.DeleteEstate;
 using RealEstate.Application.Estates.Commands.RestoreEstate;
+using RealEstate.Application.Estates.Commands.UpdateEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
 
@@ -57,11 +58,12 @@ namespace RealEstate.Controllers.Estate
             return Ok(await Mediator.Send(new DeleteEstateCommand { EstateId = id }));
         }
 
-        [HttpPut]
-        [Authorize]
-        public async Task<IActionResult> UpdateEstate()
+        [HttpPut("{id}")]
+        //[Authorize]
+        public async Task<IActionResult> UpdateEstate(UpdateEstateCommand command)
         {
-            return Ok();
+            var result = await Mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpPatch]
