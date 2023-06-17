@@ -32,8 +32,6 @@ namespace RealEstate.Application.Estates.Commands.RestoreEstate
                 throw new Exception($"Estate with this Id: {request.EstateId} is not deleted");
             }
 
-            _context.Estates.Update(estate);
-
             await _context.SaveChangesAsync(cancellationToken);
 
             return estate.Id;

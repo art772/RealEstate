@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System.Security.Claims;
-using System.Xml.Linq;
 
 namespace RealEstate.Application.Estates.Commands.DeleteEstate
 {
@@ -15,9 +14,9 @@ namespace RealEstate.Application.Estates.Commands.DeleteEstate
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public DeleteEstateCommandHandler(IEstateDbContext estateDbContext, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
+        public DeleteEstateCommandHandler(IEstateDbContext context, UserManager<ApplicationUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
-            _context = estateDbContext;
+            _context = context;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }

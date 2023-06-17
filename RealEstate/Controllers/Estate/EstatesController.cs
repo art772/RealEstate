@@ -59,7 +59,7 @@ namespace RealEstate.Controllers.Estate
         }
 
         [HttpPut("{id}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdateEstate(UpdateEstateCommand command)
         {
             var result = await Mediator.Send(command);
