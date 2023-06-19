@@ -13,7 +13,7 @@ namespace RealEstate.Application.Common.Exceptions
         {
 
         }
-        public InvalidEstateIdException(int id) : base(String.Format("Estate with Id: {0} doesn't exist", id))
+        public InvalidEstateIdException(int id) : base(String.Format($"Estate with Id: {id} doesn't exist"))
         {
 
         }

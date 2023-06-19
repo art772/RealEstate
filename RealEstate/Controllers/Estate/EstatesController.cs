@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using RealEstate.Application.Estates.Commands.CreateEstate;
 using RealEstate.Application.Estates.Commands.DeleteEstate;
 using RealEstate.Application.Estates.Commands.RestoreEstate;
@@ -14,11 +15,9 @@ namespace RealEstate.Controllers.Estate
     [Route("api/estates")]
     public class EstatesController : BaseController
     {
-        private readonly IValidator<CreateEstateCommand> _validator;
-
-        public EstatesController(IValidator<CreateEstateCommand> validator)
+        public EstatesController()
         {
-            _validator = validator;
+
         }
 
         [HttpGet]
@@ -38,9 +37,11 @@ namespace RealEstate.Controllers.Estate
         [Authorize]
         public async Task<IActionResult> CreateEstate(CreateEstateCommand command)
         {
-            ValidationResult res = await _validator.ValidateAsync(command);
+            CreateEstateCommandValidator validation = new CreateEstateCommandValidator();
 
-            if (res.IsValid)
+            var validationResult = await validation.ValidateAsync(command);
+
+            if (validationResult.IsValid)
             {
                 var result = await Mediator.Send(command);
                 return Ok(result);
@@ -62,8 +63,20 @@ namespace RealEstate.Controllers.Estate
         [Authorize]
         public async Task<IActionResult> UpdateEstate(UpdateEstateCommand command)
         {
-            var result = await Mediator.Send(command);
-            return Ok(result);
+            UpdateEstateCommandValidator validation = new UpdateEstateCommandValidator();
+
+            var validationResult = await validation.ValidateAsync(command);
+
+            if(validationResult.IsValid)
+            {
+                var result = await Mediator.Send(command);
+                return Ok(result);
+            }
+            else
+            {
+                throw new Exception();
+            }
+
         }
 
         [HttpPatch]

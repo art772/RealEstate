@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System.Security.Claims;
@@ -50,13 +51,13 @@ namespace RealEstate.Application.Estates.Commands.DeleteEstate
                 }
                 else
                 {
-                    throw new Exception("This property has been removed");
+                    throw new PreviouslyDeletedEstateException();
                 }
                 
             }
             else
             {
-                throw new Exception("This Estate does not belong to You");
+                throw new NotYourEstateException();
             }
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System.Security.Claims;
@@ -33,12 +34,12 @@ namespace RealEstate.Application.Estates.Commands.UpdateEstate
 
             if (estate == null)
             {
-                throw new Exception($"Estate with Id: {request.Id} does not exist");
+                throw new InvalidEstateIdException(request.Id);
             }
 
             if (user.Id != estate.ApplicationUserId)
             {
-                throw new Exception("This estate does not belong to You");
+                throw new NotYourEstateException();
             }
 
             estate.Name = request.Name;

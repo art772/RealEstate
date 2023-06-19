@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System;
@@ -29,7 +30,7 @@ namespace RealEstate.Application.Estates.Commands.RestoreEstate
             }
             else
             {
-                throw new Exception($"Estate with this Id: {request.EstateId} is not deleted");
+                throw new NotDeletedEstateException(request.EstateId);
             }
 
             await _context.SaveChangesAsync(cancellationToken);
