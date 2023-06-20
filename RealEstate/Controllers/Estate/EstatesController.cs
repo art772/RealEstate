@@ -9,6 +9,7 @@ using RealEstate.Application.Estates.Commands.RestoreEstate;
 using RealEstate.Application.Estates.Commands.UpdateEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
+using System;
 
 namespace RealEstate.Controllers.Estate
 {
@@ -74,9 +75,8 @@ namespace RealEstate.Controllers.Estate
             }
             else
             {
-                throw new Exception();
+                throw new ValidationException(validationResult.Errors);
             }
-
         }
 
         [HttpPatch]
