@@ -28,6 +28,10 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
         }
         public async Task<int> Handle(CreateEstateCommand request, CancellationToken cancellationToken)
         {
+            var genreCount = _context.Genres.Count();
+            var categoryCount = _context.Categories.Count();
+            var stateCount = _context.States.Count();
+
             var httpContext = _httpContextAccessor.HttpContext;
 
             var userName = httpContext.User.FindFirstValue(ClaimTypes.Name);
@@ -47,10 +51,20 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
                 Price = request.Price,
                 EstateArea = request.EstateArea,
                 YearOfConstruction = request.YearOfConstruction,
-                GenreId = 1,
-                CategoryId = 1,
-                StateId = 1
+                GenreId = request.GenreId,
+                CategoryId = request.CategoryId,
+                StateId = request.StateId
             };
+
+            if(request.GenreId > genreCount)
+                throw new Exception($"Genre Id can't be higher than {genreCount}");
+            
+            if(request.CategoryId > categoryCount)
+                throw new Exception($"Category Id can't be higher than {categoryCount}");
+            
+            if(request.StateId > stateCount)
+                throw new Exception($"State Id can't be higher than {stateCount}");
+
 
             estate.ApplicationUserId = user.Id;
 

@@ -20,5 +20,8 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
         public double Price { get; set; }
         public double EstateArea { get; set; }
         public int YearOfConstruction { get; set; }
+        public int GenreId { get; set; }
+        public int CategoryId { get; set; }
+        public int StateId { get; set; } 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using RealEstate.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
             RuleFor(x => x.Price).NotEmpty().ExclusiveBetween(1, 9999999999);
             RuleFor(x => x.EstateArea).NotEmpty().ExclusiveBetween(1, 999999);
             RuleFor(x => x.YearOfConstruction).NotEmpty();
+            RuleFor(x => x.GenreId).NotEmpty();
+            RuleFor(x => x.CategoryId).NotEmpty();
+            RuleFor(x => x.StateId).NotEmpty();
         }
     }
 }
