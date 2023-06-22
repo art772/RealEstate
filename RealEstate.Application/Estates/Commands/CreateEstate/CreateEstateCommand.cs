@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
         public int YearOfConstruction { get; set; }
         public int GenreId { get; set; }
         public int CategoryId { get; set; }
-        public int StateId { get; set; } 
+        public int StateId { get; set; }
+        ICollection<EstateTag> EstateTags { get; set; }
     }
 }

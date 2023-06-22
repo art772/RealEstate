@@ -38,6 +38,8 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
 
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);
 
+            List<EstateTag> estateTags = new List<EstateTag>();
+
             Estate estate = new()
             {
                 Name = request.Name,
@@ -54,6 +56,7 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
                 GenreId = request.GenreId,
                 CategoryId = request.CategoryId,
                 StateId = request.StateId
+                //EstateTags = request.EstateTags
             };
 
             if(request.GenreId > genreCount)
