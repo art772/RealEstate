@@ -12,8 +12,8 @@ using RealEstate.Persistance;
 namespace RealEstate.Persistance.Migrations
 {
     [DbContext(typeof(EstateDbContext))]
-    [Migration("20230530200023_initialTest")]
-    partial class initialTest
+    [Migration("20230623124401_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -183,7 +183,7 @@ namespace RealEstate.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsBanned")
+                    b.Property<bool>("IsBanned")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -279,7 +279,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 1,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2031),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4782),
                             Name = "Sprzedaż",
                             StatusId = 1
                         },
@@ -287,7 +287,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 2,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2075),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4819),
                             Name = "Wynajem",
                             StatusId = 1
                         });
@@ -398,7 +398,7 @@ namespace RealEstate.Persistance.Migrations
                             City = "Poznań",
                             Country = "Polska",
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2375),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5187),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ultricies nisl.",
                             EstateArea = 150.0,
                             FlatNumber = "5",
@@ -472,7 +472,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 1,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2223),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4946),
                             Name = "Dom",
                             StatusId = 1
                         },
@@ -480,7 +480,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 2,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2230),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4951),
                             Name = "Mieszkanie",
                             StatusId = 1
                         },
@@ -488,7 +488,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 3,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2234),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4954),
                             Name = "Kawalerka",
                             StatusId = 1
                         },
@@ -496,7 +496,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 4,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2237),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4956),
                             Name = "Apartament",
                             StatusId = 1
                         },
@@ -504,7 +504,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 5,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2239),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5017),
                             Name = "Biuro",
                             StatusId = 1
                         },
@@ -512,7 +512,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 6,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2242),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5022),
                             Name = "Pokój",
                             StatusId = 1
                         },
@@ -520,7 +520,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 7,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2244),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5026),
                             Name = "Lokal usługowy",
                             StatusId = 1
                         },
@@ -528,7 +528,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 8,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2247),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5030),
                             Name = "Garaż",
                             StatusId = 1
                         });
@@ -577,7 +577,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 1,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2270),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5067),
                             Name = "Dostępne",
                             StatusId = 1
                         },
@@ -585,7 +585,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 2,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2275),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5073),
                             Name = "Niedostępne",
                             StatusId = 1
                         },
@@ -593,7 +593,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 3,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2277),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5077),
                             Name = "Zarezerwowane",
                             StatusId = 1
                         },
@@ -601,7 +601,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 4,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2280),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5080),
                             Name = "Wynajęte",
                             StatusId = 1
                         },
@@ -609,7 +609,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 5,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2282),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5084),
                             Name = "Sprzedane",
                             StatusId = 1
                         });
@@ -661,7 +661,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 1,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2345),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5150),
                             Name = "Ogród",
                             StatusId = 1
                         },
@@ -669,7 +669,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 2,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2350),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5157),
                             Name = "Taras",
                             StatusId = 1
                         },
@@ -677,7 +677,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 3,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2353),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5161),
                             Name = "Winda",
                             StatusId = 1
                         },
@@ -685,7 +685,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 4,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2355),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5166),
                             Name = "Basen",
                             StatusId = 1
                         },
@@ -693,7 +693,7 @@ namespace RealEstate.Persistance.Migrations
                         {
                             Id = 5,
                             CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 5, 30, 22, 0, 23, 300, DateTimeKind.Local).AddTicks(2358),
+                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5168),
                             Name = "Piętrowy",
                             StatusId = 1
                         });
@@ -785,13 +785,13 @@ namespace RealEstate.Persistance.Migrations
 
             modelBuilder.Entity("RealEstate.Domain.Entities.EstateTag", b =>
                 {
-                    b.HasOne("RealEstate.Domain.Entities.Tag", "Tag")
+                    b.HasOne("RealEstate.Domain.Entities.Estate", "Estate")
                         .WithMany("EstateTags")
                         .HasForeignKey("EstateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RealEstate.Domain.Entities.Estate", "Estate")
+                    b.HasOne("RealEstate.Domain.Entities.Tag", "Tag")
                         .WithMany("EstateTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)

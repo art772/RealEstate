@@ -48,12 +48,12 @@ namespace RealEstate.Persistance
             modelBuilder.Entity<EstateTag>()
                 .HasOne(e => e.Estate)
                 .WithMany(et => et.EstateTags)
-                .HasForeignKey(e => e.TagId);
+                .HasForeignKey(e => e.EstateId);
 
             modelBuilder.Entity<EstateTag>()
                 .HasOne(t => t.Tag)
                 .WithMany(et => et.EstateTags)
-                .HasForeignKey(t => t.EstateId);
+                .HasForeignKey(t => t.TagId);
 
 
             modelBuilder.SeedData();

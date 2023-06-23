@@ -34,7 +34,7 @@ namespace RealEstate.Domain.Entities
         public State State { get; set; } // Available, unavailable, reservation, sold
 
         // One Estate has many Tags
-        public ICollection<EstateTag> ?EstateTags { get; set; } // Garden, elevator, pool ...
+        public ICollection<EstateTag> EstateTags { get; set; } // Garden, elevator, pool ...
 
         public int ?ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
