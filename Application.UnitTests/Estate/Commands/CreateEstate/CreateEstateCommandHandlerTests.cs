@@ -19,7 +19,7 @@ namespace Application.UnitTests.Estate.Commands.CreateEstate
 
         public CreateEstateCommandHandlerTests() : base()
         {
-            _handler = new CreateEstateCommandHandler(_context);
+            //_handler = new CreateEstateCommandHandler(_context);
         }
 
         [Fact]

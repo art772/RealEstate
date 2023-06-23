@@ -24,6 +24,6 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
         public int GenreId { get; set; }
         public int CategoryId { get; set; }
         public int StateId { get; set; }
-        ICollection<EstateTag> EstateTags { get; set; }
+        public List<int> EstateTags { get; set; }
     }
 }

@@ -38,8 +38,6 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
 
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);
 
-            List<EstateTag> estateTags = new List<EstateTag>();
-
             Estate estate = new()
             {
                 Name = request.Name,
@@ -56,10 +54,9 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
                 GenreId = request.GenreId,
                 CategoryId = request.CategoryId,
                 StateId = request.StateId
-                //EstateTags = request.EstateTags
             };
 
-            if(request.GenreId > genreCount)
+            if (request.GenreId > genreCount)
                 throw new Exception($"Genre Id can't be higher than {genreCount}");
             
             if(request.CategoryId > categoryCount)
@@ -72,6 +69,13 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
             estate.ApplicationUserId = user.Id;
 
             _context.Estates.Add(estate);
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+            foreach (var tag in request.EstateTags)
+            {
+                _context.EstateTags.Add(new EstateTag() { EstateId = estate.Id, TagId = tag });
+            }
 
             await _context.SaveChangesAsync(cancellationToken);
 
