@@ -9,6 +9,7 @@ using RealEstate.Domain.Entities;
 using RealEstate.Infrastructure;
 using RealEstate.Persistance;
 using Serilog;
+using System.Reflection.Emit;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -97,9 +98,11 @@ using (var scope = app.Services.CreateScope())
     {
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+        var modelBuilder = new ModelBuilder();
 
         await EstateDbContextSeed.SeedUserRolesAsync(roleManager);
         await EstateDbContextSeed.SeedDefaultSuperAdmin(userManager);
+        await EstateDbContextSeed.SeedDefaultData(modelBuilder);
     }
     catch (Exception)
     {

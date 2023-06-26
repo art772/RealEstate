@@ -54,9 +54,6 @@ namespace RealEstate.Persistance
                 .HasOne(t => t.Tag)
                 .WithMany(et => et.EstateTags)
                 .HasForeignKey(t => t.TagId);
-
-
-            modelBuilder.SeedData();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
