@@ -9,11 +9,12 @@ using RealEstate.Application.Estates.Commands.RestoreEstate;
 using RealEstate.Application.Estates.Commands.UpdateEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
+using RealEstate.Application.Estates.Queries.GetEstatesByCategory;
 using System;
 
 namespace RealEstate.Controllers.Estate
 {
-    [Route("api/estates")]
+    [Route("api/estates/[action]")]
     public class EstatesController : BaseController
     {
         public EstatesController()
@@ -32,6 +33,12 @@ namespace RealEstate.Controllers.Estate
         {
             var vm = await Mediator.Send(new GetEstateDetailQuery() { EstateId = id });
             return vm;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEstatesByCategory(int id)
+        {
+            return Ok(await Mediator.Send(new GetEstatesListByCategoryQuery() { CategoryId = id }));
         }
 
         [HttpPost]
