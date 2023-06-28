@@ -10,6 +10,7 @@ using RealEstate.Application.Estates.Commands.UpdateEstate;
 using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
 using RealEstate.Application.Estates.Queries.GetEstatesByCategory;
+using RealEstate.Application.Estates.Queries.GetEstatesByGenre;
 using System;
 
 namespace RealEstate.Controllers.Estate
@@ -39,6 +40,18 @@ namespace RealEstate.Controllers.Estate
         public async Task<IActionResult> GetEstatesByCategory(int id)
         {
             return Ok(await Mediator.Send(new GetEstatesListByCategoryQuery() { CategoryId = id }));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEstatesByGenre(int id)
+        {
+            return Ok(await Mediator.Send(new GetEstatesListByGenreQuery() { GenreId = id }));
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEstatesByState(int id)
+        {
+            return Ok();
         }
 
         [HttpPost]
