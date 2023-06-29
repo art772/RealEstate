@@ -11,6 +11,7 @@ using RealEstate.Application.Estates.Queries.GetEstateDetail;
 using RealEstate.Application.Estates.Queries.GetEstates;
 using RealEstate.Application.Estates.Queries.GetEstatesByCategory;
 using RealEstate.Application.Estates.Queries.GetEstatesByGenre;
+using RealEstate.Application.Estates.Queries.GetEstatesByState;
 using System;
 
 namespace RealEstate.Controllers.Estate
@@ -20,7 +21,6 @@ namespace RealEstate.Controllers.Estate
     {
         public EstatesController()
         {
-
         }
 
         [HttpGet]
@@ -51,7 +51,7 @@ namespace RealEstate.Controllers.Estate
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEstatesByState(int id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new GetEstatesListByStateQuery() { SateId = id }));
         }
 
         [HttpPost]
