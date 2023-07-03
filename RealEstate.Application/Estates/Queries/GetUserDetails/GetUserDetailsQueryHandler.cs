@@ -9,6 +9,7 @@ namespace RealEstate.Application.Estates.Queries.GetUserDetails
 {
     public class GetUserDetailsQueryHandler : IRequestHandler<GetUserDetailsQuery, UserDetailsDto>
     {
+
         public GetUserDetailsQueryHandler()
         {
 

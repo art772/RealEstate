@@ -6,6 +6,7 @@ using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System.Security.Claims;
+using System.Threading;
 
 namespace RealEstate.Application.Estates.Commands.UpdateEstate
 {

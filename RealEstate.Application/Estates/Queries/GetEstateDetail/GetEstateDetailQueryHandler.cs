@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
+using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,23 +27,28 @@ namespace RealEstate.Application.Estates.Queries.GetEstateDetail
             }
             else
             {
-                var estateVm = new EstateDetailVm()
-                {
-                    Name = estate.Name.ToString(),
-                    Description = estate.Description.ToString(),
-                    Street = estate.Street.ToString(),
-                    StreetNumber = estate.StreetNumber.ToString(),
-                    FlatNumber = estate.FlatNumber.ToString(),
-                    City = estate.City.ToString(),
-                    ZipCode = estate.ZipCode.ToString(),
-                    Country = estate.Country.ToString(),
-                    Price = estate.Price,
-                    EstateArea = estate.EstateArea,
-                    YearOfConstruction = estate.YearOfConstruction
-                };
-
-                return estateVm;
+                return MapEstatesToVm(estate);
             }
+        }
+
+        private EstateDetailVm MapEstatesToVm(Estate estate)
+        {
+            var estateVm = new EstateDetailVm()
+            {
+                Name = estate.Name.ToString(),
+                Description = estate.Description.ToString(),
+                Street = estate.Street.ToString(),
+                StreetNumber = estate.StreetNumber.ToString(),
+                FlatNumber = estate.FlatNumber.ToString(),
+                City = estate.City.ToString(),
+                ZipCode = estate.ZipCode.ToString(),
+                Country = estate.Country.ToString(),
+                Price = estate.Price,
+                EstateArea = estate.EstateArea,
+                YearOfConstruction = estate.YearOfConstruction
+            };
+
+            return estateVm;
         }
     }
 }
