@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Estates.Queries.GetUserDetails
+namespace RealEstate.Application.Estates.Queries.GetUserEstates
 {
-    public class GetUserDetailsQuery : IRequest<UserDetailsVm>
+    public class GetUserEstatesQuery : IRequest<UserEstatesVm>
     {
         public int UserId { get; set; }
     }
