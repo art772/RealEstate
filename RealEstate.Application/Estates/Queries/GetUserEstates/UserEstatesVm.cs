@@ -9,8 +9,8 @@ namespace RealEstate.Application.Estates.Queries.GetUserEstates
 {
     public class UserEstatesVm
     {
-        public string Id { get; set; }
-        public string Title { get;set; }
+        public int Id { get; set; }
+        public string Name { get;set; }
         public string Street { get; set; }
         public string StreetNumber { get; set; }
         public string FlatNumber { get; set; }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using RealEstate.Application.Estates.Queries.GetUserDetails;
+using RealEstate.Application.Estates.Queries.GetUserEstates;
 
 namespace RealEstate.Controllers.User
 {
@@ -19,7 +20,7 @@ namespace RealEstate.Controllers.User
         [HttpGet]
         public async Task<IActionResult> GetUserEstates(int id)
         {
-            return Ok(/*await Mediator.Send(new GetUserEstatesQuery() { UserId = id })*/);
+            return Ok(await Mediator.Send(new GetUserEstatesQuery() { UserId = id }));
         }
     }
 }
