@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-using RealEstate.Application.Estates.Queries.GetUserDetails;
-using RealEstate.Application.Estates.Queries.GetUserEstates;
+﻿using Microsoft.AspNetCore.Mvc;
+using RealEstate.Application.Users.Queries.GetUserDetails;
+using RealEstate.Application.Users.Queries.GetUserEstates;
 
 namespace RealEstate.Controllers.User
 {

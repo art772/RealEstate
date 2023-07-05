@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Estates.Queries.GetUserDetails
+namespace RealEstate.Application.Users.Queries.GetUserDetails
 {
     public class GetUserDetailsQueryHandler : IRequestHandler<GetUserDetailsQuery, UserDetailsVm>
     {
@@ -29,7 +30,7 @@ namespace RealEstate.Application.Estates.Queries.GetUserDetails
 
             if (user == null)
             {
-                throw new Exception("User does not exist");
+                throw new UserDoesNotExistException();
             }
             else
             {

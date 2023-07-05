@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Estates.Queries.GetUserDetails
+namespace RealEstate.Application.Users.Queries.GetUserDetails
 {
     public class GetUserDetailsQuery : IRequest<UserDetailsVm>
     {

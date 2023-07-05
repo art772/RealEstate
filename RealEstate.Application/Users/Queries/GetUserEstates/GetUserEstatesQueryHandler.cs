@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace RealEstate.Application.Estates.Queries.GetUserEstates
+namespace RealEstate.Application.Users.Queries.GetUserEstates
 {
     public class GetUserEstatesQueryHandler : IRequestHandler<GetUserEstatesQuery, List<UserEstatesVm>>
     {
@@ -39,7 +39,7 @@ namespace RealEstate.Application.Estates.Queries.GetUserEstates
         {
             var estateList = new List<UserEstatesVm>();
 
-            foreach(var estate in estates)
+            foreach (var estate in estates)
             {
                 var estateVm = new UserEstatesVm()
                 {
