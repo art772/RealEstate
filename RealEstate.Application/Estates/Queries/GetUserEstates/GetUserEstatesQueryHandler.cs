@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System;
@@ -22,9 +23,16 @@ namespace RealEstate.Application.Estates.Queries.GetUserEstates
 
         public async Task<List<UserEstatesVm>> Handle(GetUserEstatesQuery request, CancellationToken cancellationToken)
         {
-            var estates = await _context.Estates.Where(x => x.ApplicationUserId == request.UserId).ToListAsync(cancellationToken);
+            var estates = await _context.Estates.Where(x => x.ApplicationUserId == request.UserId && x.StatusId == 1).ToListAsync(cancellationToken);
 
-            return MapUserEstatesToVm(estates);
+            if (estates.Any())
+            {
+                return MapUserEstatesToVm(estates);
+            }
+            else
+            {
+                throw new EstatesListEmptyException();
+            }
         }
 
         private List<UserEstatesVm> MapUserEstatesToVm(List<Estate> estates)
