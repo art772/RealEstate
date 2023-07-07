@@ -27,4 +27,19 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Admin\Commands\Categories\CreateCategory\" />
+    <Folder Include="Admin\Commands\Categories\UpdateCategory\" />
+    <Folder Include="Admin\Commands\Genres\CreateGenre\" />
+    <Folder Include="Admin\Commands\Genres\UpdateGenre\" />
+    <Folder Include="Admin\Commands\States\CreateState\" />
+    <Folder Include="Admin\Commands\States\UpdateState\" />
+    <Folder Include="Admin\Commands\Tags\CreateTag\" />
+    <Folder Include="Admin\Commands\Tags\UpdateTag\" />
+    <Folder Include="Admin\Queries\GetTags\" />
+    <Folder Include="Admin\Queries\GetGenres\" />
+    <Folder Include="Admin\Queries\GetStates\" />
+    <Folder Include="Admin\Queries\GetCategories\" />
+  </ItemGroup>
+
 </Project>
