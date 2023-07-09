@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Category\" />
     <Folder Include="Controllers\Genre\" />
     <Folder Include="Controllers\User\" />
     <Folder Include="Controllers\State\" />
