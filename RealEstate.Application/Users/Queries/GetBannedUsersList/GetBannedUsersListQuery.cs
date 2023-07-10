@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Queries.GetBannedUsersList
 {
-    public class GetBannedUsersListQuery : IRequest<List<BannedUserDto>>
+    public class GetBannedUsersListQuery : IRequest<List<BannedUserVm>>
     {
     }
 }

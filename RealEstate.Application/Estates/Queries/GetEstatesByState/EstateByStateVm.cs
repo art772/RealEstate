@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Estates.Queries.GetEstates
+namespace RealEstate.Application.Estates.Queries.GetEstatesByState
 {
-    public class EstateDto
+    public class EstateByStateVm
     {
         public int Id { get; set; }
         public string Name { get; set; }

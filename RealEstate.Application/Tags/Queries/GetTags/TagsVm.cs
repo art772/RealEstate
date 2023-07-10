@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Admin.Queries.GetCategories
+namespace RealEstate.Application.Admin.Queries.GetTags
 {
-    internal class GetCategoriesVm
+    internal class TagsVm
     {
     }
 }

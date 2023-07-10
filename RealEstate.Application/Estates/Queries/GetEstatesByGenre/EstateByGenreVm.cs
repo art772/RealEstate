@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Estates.Queries.GetEstatesByCategory
+namespace RealEstate.Application.Estates.Queries.GetEstatesByGenre
 {
-    public class EstateByCategoryDto
+    public class EstateByGenreVm
     {
         public int Id { get; set; }
         public string Name { get; set; }

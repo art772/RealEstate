@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace RealEstate.Application.Estates.Queries.GetEstates
 {
-    public class GetEstatesListQueryHandler : IRequestHandler<GetEstatesListQuery, List<EstateDto>>
+    public class GetEstatesListQueryHandler : IRequestHandler<GetEstatesListQuery, List<EstateVm>>
     {    
         private readonly IEstateDbContext _context;
 
@@ -20,7 +20,7 @@ namespace RealEstate.Application.Estates.Queries.GetEstates
             _context = context;
         }
 
-        public async Task<List<EstateDto>> Handle(GetEstatesListQuery request, CancellationToken cancellationToken)
+        public async Task<List<EstateVm>> Handle(GetEstatesListQuery request, CancellationToken cancellationToken)
         {
             var estates = await _context.Estates.Where(p => p.StatusId == 1).ToListAsync(cancellationToken);
 
@@ -34,13 +34,13 @@ namespace RealEstate.Application.Estates.Queries.GetEstates
             }
         }
 
-        private List<EstateDto> MapEstatesToVm(List<Estate> estates)
+        private List<EstateVm> MapEstatesToVm(List<Estate> estates)
         {
-            var result = new List<EstateDto>();
+            var result = new List<EstateVm>();
 
             foreach (var estate in estates)
             {
-                var estateVm = new EstateDto()
+                var estateVm = new EstateVm()
                 {
                     Id = estate.Id,
                     Name = estate.Name,

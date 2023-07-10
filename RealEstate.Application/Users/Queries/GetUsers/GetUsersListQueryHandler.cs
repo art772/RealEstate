@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Queries.GetUsers
 {
-    public class GetUsersListQueryHandler : IRequestHandler<GetUsersListQuery, List<UserListDto>>
+    public class GetUsersListQueryHandler : IRequestHandler<GetUsersListQuery, List<UserListVm>>
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -18,20 +18,20 @@ namespace RealEstate.Application.Users.Queries.GetUsers
         {
             _userManager = userManager;
         }
-        public async Task<List<UserListDto>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserListVm>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
         {
             var users = await _userManager.Users.ToListAsync(cancellationToken);
 
             return MapUsersListVm(users);
         }
 
-        private List<UserListDto> MapUsersListVm(List<ApplicationUser> users)
+        private List<UserListVm> MapUsersListVm(List<ApplicationUser> users)
         {
-            var result = new List<UserListDto>();
+            var result = new List<UserListVm>();
 
             foreach (var user in users)
             {
-                var userVm = new UserListDto()
+                var userVm = new UserListVm()
                 {
                     Id = user.Id,
                     UserName = user.UserName,

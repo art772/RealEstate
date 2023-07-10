@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Admin.Queries.GetGenres
+namespace RealEstate.Application.Tags.Queries.GetTagDetails
 {
-    internal class GetGenresVm
+    internal class TagDetailsVm
     {
     }
 }

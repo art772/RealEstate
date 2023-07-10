@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Queries.GetBannedUsersList
 {
-    public class GetBannedUsersListQueryHandler : IRequestHandler<GetBannedUsersListQuery, List<BannedUserDto>>
+    public class GetBannedUsersListQueryHandler : IRequestHandler<GetBannedUsersListQuery, List<BannedUserVm>>
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -19,20 +19,20 @@ namespace RealEstate.Application.Users.Queries.GetBannedUsersList
             _userManager = userManager;
         }
 
-        public async Task<List<BannedUserDto>> Handle(GetBannedUsersListQuery request, CancellationToken cancellationToken)
+        public async Task<List<BannedUserVm>> Handle(GetBannedUsersListQuery request, CancellationToken cancellationToken)
         {
             var users = await _userManager.Users.Where(p => p.IsBanned == true).ToListAsync(cancellationToken);
 
             return MapBannedUserToVm(users);
         }
 
-        private List<BannedUserDto> MapBannedUserToVm(List<ApplicationUser> users)
+        private List<BannedUserVm> MapBannedUserToVm(List<ApplicationUser> users)
         {
-            var result = new List<BannedUserDto>();
+            var result = new List<BannedUserVm>();
 
             foreach (var user in users)
             {
-                var userVm = new BannedUserDto()
+                var userVm = new BannedUserVm()
                 {
                     UserName = user.UserName,
                     Email = user.Email,

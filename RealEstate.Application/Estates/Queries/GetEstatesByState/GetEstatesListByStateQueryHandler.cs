@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstatesByState
 {
-    public class GetEstatesListByStateQueryHandler : IRequestHandler<GetEstatesListByStateQuery, List<EstateByStateDto>>
+    public class GetEstatesListByStateQueryHandler : IRequestHandler<GetEstatesListByStateQuery, List<EstateByStateVm>>
     {
         private readonly IEstateDbContext _context;
 
@@ -19,7 +19,7 @@ namespace RealEstate.Application.Estates.Queries.GetEstatesByState
             _context = context;
         }
 
-        public async Task<List<EstateByStateDto>> Handle(GetEstatesListByStateQuery request, CancellationToken cancellationToken)
+        public async Task<List<EstateByStateVm>> Handle(GetEstatesListByStateQuery request, CancellationToken cancellationToken)
         {
             var estates = await _context.Estates.Where(x => x.StateId == request.SateId).ToListAsync(cancellationToken);
             
@@ -33,13 +33,13 @@ namespace RealEstate.Application.Estates.Queries.GetEstatesByState
             }
         }
 
-        private List<EstateByStateDto> MapEstatesToVm(List<Estate> estates)
+        private List<EstateByStateVm> MapEstatesToVm(List<Estate> estates)
         {
-            var result = new List<EstateByStateDto>();
+            var result = new List<EstateByStateVm>();
 
             foreach (var estate in estates)
             {
-                var estateVm = new EstateByStateDto()
+                var estateVm = new EstateByStateVm()
                 {
                     Id = estate.Id,
                     Name = estate.Name,

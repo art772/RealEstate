@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstatesByCategory
 {
-    public class GetEstatesListByCategoryQuery : IRequest<List<EstateByCategoryDto>>
+    public class GetEstatesListByCategoryQuery : IRequest<List<EstateByCategoryVm>>
     {
         public int CategoryId { get; set; }
     }

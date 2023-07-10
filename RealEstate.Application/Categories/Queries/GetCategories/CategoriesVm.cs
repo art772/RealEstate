@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Tags.Queries.GetTagDetails
+namespace RealEstate.Application.Admin.Queries.GetCategories
 {
-    internal class GetTagDetailsVm
+    public class CategoriesVm
     {
+        public string Name { get; set; }
     }
 }

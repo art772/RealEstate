@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Queries.GetUsers
 {
-    public class UserListDto
+    public class UserListVm
     {
         public int Id { get; set; }
         public string UserName { get; set; }

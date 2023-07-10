@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstatesByCategory
 {
-    public class GetEstatesListByCategoryQueryHandler : IRequestHandler<GetEstatesListByCategoryQuery, List<EstateByCategoryDto>>
+    public class GetEstatesListByCategoryQueryHandler : IRequestHandler<GetEstatesListByCategoryQuery, List<EstateByCategoryVm>>
     {
         private readonly IEstateDbContext _context;
 
@@ -19,7 +19,7 @@ namespace RealEstate.Application.Estates.Queries.GetEstatesByCategory
             _context = context;
         }
 
-        public async Task<List<EstateByCategoryDto>> Handle(GetEstatesListByCategoryQuery request, CancellationToken cancellationToken)
+        public async Task<List<EstateByCategoryVm>> Handle(GetEstatesListByCategoryQuery request, CancellationToken cancellationToken)
         {
             var estates = await _context.Estates.Where(x => x.CategoryId == request.CategoryId).ToListAsync(cancellationToken);
 
@@ -33,13 +33,13 @@ namespace RealEstate.Application.Estates.Queries.GetEstatesByCategory
             }
         }
 
-        private List<EstateByCategoryDto> MapEstatesToVm(List<Estate> estates)
+        private List<EstateByCategoryVm> MapEstatesToVm(List<Estate> estates)
         {
-            var result = new List<EstateByCategoryDto>();
+            var result = new List<EstateByCategoryVm>();
 
             foreach(var estate in estates)
             {
-                var estateVm = new EstateByCategoryDto()
+                var estateVm = new EstateByCategoryVm()
                 {
                     Id = estate.Id,
                     Name = estate.Name,

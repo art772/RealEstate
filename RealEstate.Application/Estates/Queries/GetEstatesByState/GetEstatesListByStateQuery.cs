@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstatesByState
 {
-    public class GetEstatesListByStateQuery : IRequest<List<EstateByStateDto>>
+    public class GetEstatesListByStateQuery : IRequest<List<EstateByStateVm>>
     {
         public int SateId { get; set; }
     }

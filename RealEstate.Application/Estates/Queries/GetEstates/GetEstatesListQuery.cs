@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstates
 {
-    public class GetEstatesListQuery : IRequest<List<EstateDto>>
+    public class GetEstatesListQuery : IRequest<List<EstateVm>>
     {
     }
 }
