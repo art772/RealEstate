@@ -21,7 +21,7 @@ namespace RealEstate.Application.Admin.Queries.GetCategories
 
         public async Task<List<CategoriesVm>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
-            var categories = await _context.Categories.ToListAsync(cancellationToken);
+            var categories = await _context.Categories.Where(x => x.StatusId == 1).ToListAsync(cancellationToken);
 
             return MapCategoriesToVm(categories);
         }

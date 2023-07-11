@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Admin.Queries.GetCategories;
 using RealEstate.Application.Categories.Commands.CreateCategory;
+using RealEstate.Application.Categories.Commands.DeleteCategory;
 
 namespace RealEstate.Controllers.Category
 {
@@ -16,10 +17,10 @@ namespace RealEstate.Controllers.Category
         }
 
         [HttpPost]
-        [Authorize(Roles = "SuperAdministrator,Administrator")]
+        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> CreateCategory(CreateCategoryCommand command)
         {
-            return Ok();
+            return Ok(await Mediator.Send(command));
         }
 
         [HttpGet]
@@ -37,10 +38,10 @@ namespace RealEstate.Controllers.Category
         }
 
         [HttpDelete]
-        [Authorize(Roles = "SuperAdministrator,Administrator")]
+        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new DeleteCategoryCommand() { CategoryId = id }));
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Genres.Queries.GetGenreDetails
 {
-    internal class GetGenreDetailsVm
+    internal class GenreDetailsVm
     {
     }
 }

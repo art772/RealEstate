@@ -32,8 +32,7 @@ namespace RealEstate.Controllers.Estate
         [HttpGet("{id}")]
         public async Task<ActionResult<EstateDetailVm>> GetDetails(int id)
         {
-            var vm = await Mediator.Send(new GetEstateDetailQuery() { EstateId = id });
-            return vm;
+            return Ok(await Mediator.Send(new GetEstateDetailQuery() { EstateId = id }));
         }
 
         [HttpGet("{id}")]
@@ -47,7 +46,7 @@ namespace RealEstate.Controllers.Estate
         {
             return Ok(await Mediator.Send(new GetEstatesListByGenreQuery() { GenreId = id }));
         }
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEstatesByState(int id)
         {

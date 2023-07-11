@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Categories\Commands\DeleteCategory\" />
     <Folder Include="Categories\Queries\GetCategoryToEdit\" />
   </ItemGroup>
 

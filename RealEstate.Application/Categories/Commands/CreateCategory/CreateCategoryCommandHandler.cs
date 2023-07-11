@@ -25,9 +25,9 @@ namespace RealEstate.Application.Categories.Commands.CreateCategory
                 Name = request.Name
             };
 
-            await _context.Categories.AddAsync(category);
+            _context.Categories.Add(category);
 
-            _context.SaveChangesAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return category.Id;
         }
