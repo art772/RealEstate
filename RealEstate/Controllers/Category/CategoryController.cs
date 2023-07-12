@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Admin.Queries.GetCategories;
 using RealEstate.Application.Categories.Commands.CreateCategory;
 using RealEstate.Application.Categories.Commands.DeleteCategory;
+using RealEstate.Application.Categories.Commands.RestoreCategory;
+using RealEstate.Application.Categories.Commands.UpdateCategory;
 
 namespace RealEstate.Controllers.Category
 {
@@ -24,17 +24,17 @@ namespace RealEstate.Controllers.Category
         }
 
         [HttpGet]
-        [Authorize(Roles = "SuperAdministrator,Administrator")]
+        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> EditCategory(int id)
         {
             return Ok();
         }
 
         [HttpPatch]
-        [Authorize(Roles = "SuperAdministrator,Administrator")]
-        public async Task<IActionResult> UpdateCategory()
+        //[Authorize(Roles = "SuperAdministrator,Administrator")]
+        public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand command)
         {
-            return Ok();
+            return Ok(await Mediator.Send(command));
         }
 
         [HttpDelete]
@@ -42,6 +42,13 @@ namespace RealEstate.Controllers.Category
         public async Task<IActionResult> DeleteCategory(int id)
         {
             return Ok(await Mediator.Send(new DeleteCategoryCommand() { CategoryId = id }));
+        }
+
+        [HttpPatch]
+        //[Authorize(Roles = "SuperAdministrator,Administrator")]
+        public async Task<IActionResult> RestoreCategory(RestoreCategoryCommand command)
+        {
+            return Ok(await Mediator.Send(command));
         }
     }
 }
