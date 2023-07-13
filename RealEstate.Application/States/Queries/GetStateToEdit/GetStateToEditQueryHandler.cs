@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealEstate.Application.Admin.Queries.GetStates
+namespace RealEstate.Application.States.Queries.GetStateToEdit
 {
-    internal class GetStatesVm
+    internal class GetStateToEditQueryHandler
     {
     }
 }

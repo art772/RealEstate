@@ -22,10 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Genre\" />
     <Folder Include="Controllers\User\" />
-    <Folder Include="Controllers\State\" />
-    <Folder Include="Controllers\Tag\" />
   </ItemGroup>
 
 </Project>

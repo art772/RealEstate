@@ -17,9 +17,9 @@ using System;
 namespace RealEstate.Controllers.Estate
 {
     [Route("api/estates/[action]")]
-    public class EstatesController : BaseController
+    public class EstateController : BaseController
     {
-        public EstatesController()
+        public EstateController()
         {
         }
 
