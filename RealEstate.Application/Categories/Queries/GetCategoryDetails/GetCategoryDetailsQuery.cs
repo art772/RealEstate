@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace RealEstate.Application.Categories.Queries.GetCategoryDetails
 {
-    internal class GetCategoryToEditQuery
+    public class GetCategoryDetailsQuery : IRequest<CategoryDetailsVm>
     {
+        public int CategoryId { get; set; }
     }
 }
