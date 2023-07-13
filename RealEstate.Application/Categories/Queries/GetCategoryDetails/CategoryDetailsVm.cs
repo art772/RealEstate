@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RealEstate.Application.Categories.Queries.GetCategoryDetails
 {
-    internal class CategoryDetailsVm
+    internal class CategoryToEditVm
     {
     }
 }

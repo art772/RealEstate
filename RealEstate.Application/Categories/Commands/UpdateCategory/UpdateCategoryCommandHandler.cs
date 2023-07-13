@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 
 namespace RealEstate.Application.Categories.Commands.UpdateCategory
@@ -27,7 +28,7 @@ namespace RealEstate.Application.Categories.Commands.UpdateCategory
             }
             else
             {
-                throw new Exception("Category does not exist");
+                throw new CategoryDoesNotExistException();
             }
         }
     }

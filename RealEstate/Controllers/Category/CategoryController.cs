@@ -4,6 +4,7 @@ using RealEstate.Application.Categories.Commands.CreateCategory;
 using RealEstate.Application.Categories.Commands.DeleteCategory;
 using RealEstate.Application.Categories.Commands.RestoreCategory;
 using RealEstate.Application.Categories.Commands.UpdateCategory;
+using RealEstate.Application.Categories.Queries.GetCategoryToEdit;
 
 namespace RealEstate.Controllers.Category
 {
@@ -27,7 +28,7 @@ namespace RealEstate.Controllers.Category
         //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> EditCategory(int id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new GetCategoryToEditQuery() { CategoryId = id }));
         }
 
         [HttpPatch]

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace RealEstate.Application.Categories.Commands.DeleteCategory
             }
             else
             {
-                return "Category does not exist";
+                throw new CategoryDoesNotExistException();
             }           
         }
     }

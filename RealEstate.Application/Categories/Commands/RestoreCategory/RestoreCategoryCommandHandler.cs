@@ -27,7 +27,7 @@ namespace RealEstate.Application.Categories.Commands.RestoreCategory
             }
             else
             {
-                throw new Exception("Category is not delete");
+                throw new Exception("Category is not delete or does not exist");
             }
         }
     }
