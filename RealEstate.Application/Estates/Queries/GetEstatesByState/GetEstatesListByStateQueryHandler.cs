@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstatesByState
 {
@@ -22,7 +17,7 @@ namespace RealEstate.Application.Estates.Queries.GetEstatesByState
         public async Task<List<EstateByStateVm>> Handle(GetEstatesListByStateQuery request, CancellationToken cancellationToken)
         {
             var estates = await _context.Estates.Where(x => x.StateId == request.SateId).ToListAsync(cancellationToken);
-            
+
             if (estates.Any())
             {
                 return MapEstatesToVm(estates);

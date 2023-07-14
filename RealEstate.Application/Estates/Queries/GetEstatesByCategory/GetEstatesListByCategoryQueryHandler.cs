@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstatesByCategory
 {
@@ -37,7 +32,7 @@ namespace RealEstate.Application.Estates.Queries.GetEstatesByCategory
         {
             var result = new List<EstateByCategoryVm>();
 
-            foreach(var estate in estates)
+            foreach (var estate in estates)
             {
                 var estateVm = new EstateByCategoryVm()
                 {

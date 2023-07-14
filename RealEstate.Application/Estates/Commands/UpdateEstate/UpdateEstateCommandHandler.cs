@@ -6,7 +6,6 @@ using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using System.Security.Claims;
-using System.Threading;
 
 namespace RealEstate.Application.Estates.Commands.UpdateEstate
 {
@@ -26,7 +25,7 @@ namespace RealEstate.Application.Estates.Commands.UpdateEstate
         public async Task<int> Handle(UpdateEstateCommand request, CancellationToken cancellationToken)
         {
             var httpContext = _httpContextAccessor.HttpContext;
-            
+
             var userName = httpContext.User.FindFirstValue(ClaimTypes.Name);
 
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);

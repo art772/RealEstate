@@ -3,13 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Commands.LoginUser
 {
@@ -23,6 +19,7 @@ namespace RealEstate.Application.Users.Commands.LoginUser
             _userManager = userManager;
             _configuration = configuration;
         }
+
         public async Task<object> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
@@ -48,9 +45,7 @@ namespace RealEstate.Application.Users.Commands.LoginUser
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
-
                 };
-
             }
 
             throw new Exception("The user cannot be logged in");

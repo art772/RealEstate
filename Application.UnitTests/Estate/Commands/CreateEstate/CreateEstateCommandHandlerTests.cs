@@ -2,13 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Estates.Commands.CreateEstate;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Application.UnitTests.Estate.Commands.CreateEstate

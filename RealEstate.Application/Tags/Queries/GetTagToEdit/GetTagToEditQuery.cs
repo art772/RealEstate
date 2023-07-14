@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RealEstate.Application.Tags.Queries.GetTagToEdit
+﻿namespace RealEstate.Application.Tags.Queries.GetTagToEdit
 {
     internal class GetTagToEditQuery
     {

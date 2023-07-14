@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Categories.Commands.DeleteCategory
 {
@@ -23,7 +18,7 @@ namespace RealEstate.Application.Categories.Commands.DeleteCategory
         {
             var category = await _context.Categories.Where(x => x.Id == request.CategoryId).Where(x => x.StatusId == 1).FirstOrDefaultAsync(cancellationToken);
 
-            if(category != null)
+            if (category != null)
             {
                 _context.Categories.Remove(category);
 
@@ -34,7 +29,7 @@ namespace RealEstate.Application.Categories.Commands.DeleteCategory
             else
             {
                 throw new CategoryDoesNotExistException();
-            }           
+            }
         }
     }
 }

@@ -13,6 +13,5 @@ namespace RealEstate.Controllers.Auth
             var result = await Mediator.Send(command);
             return Ok(result);
         }
-
     }
 }

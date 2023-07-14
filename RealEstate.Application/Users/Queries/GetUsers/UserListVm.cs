@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RealEstate.Application.Users.Queries.GetUsers
+﻿namespace RealEstate.Application.Users.Queries.GetUsers
 {
     public class UserListVm
     {
@@ -13,6 +7,6 @@ namespace RealEstate.Application.Users.Queries.GetUsers
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool IsBanned { get;set; }
+        public bool IsBanned { get; set; }
     }
 }

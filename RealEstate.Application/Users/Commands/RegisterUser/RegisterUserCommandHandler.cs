@@ -15,10 +15,8 @@ namespace RealEstate.Application.Users.Commands.RegisterUser
 
         public async Task<int> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-
             var userEmail = await _userManager.FindByEmailAsync(request.Email);
             var userLogin = await _userManager.FindByNameAsync(request.UserName);
-
 
             if (userEmail != null)
             {

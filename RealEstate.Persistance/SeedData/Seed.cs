@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Persistance.SeedData
 {
@@ -67,7 +62,6 @@ namespace RealEstate.Persistance.SeedData
                     StateId = 1,
                 }
                 );
-            
         }
     }
 }

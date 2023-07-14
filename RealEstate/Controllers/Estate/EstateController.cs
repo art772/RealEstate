@@ -1,8 +1,6 @@
 ﻿using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using RealEstate.Application.Estates.Commands.CreateEstate;
 using RealEstate.Application.Estates.Commands.DeleteEstate;
 using RealEstate.Application.Estates.Commands.RestoreEstate;
@@ -12,7 +10,6 @@ using RealEstate.Application.Estates.Queries.GetEstates;
 using RealEstate.Application.Estates.Queries.GetEstatesByCategory;
 using RealEstate.Application.Estates.Queries.GetEstatesByGenre;
 using RealEstate.Application.Estates.Queries.GetEstatesByState;
-using System;
 
 namespace RealEstate.Controllers.Estate
 {
@@ -87,7 +84,7 @@ namespace RealEstate.Controllers.Estate
 
             var validationResult = await validation.ValidateAsync(command);
 
-            if(validationResult.IsValid)
+            if (validationResult.IsValid)
             {
                 var result = await Mediator.Send(command);
                 return Ok(result);

@@ -3,12 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Commands.EditUserData
 {
@@ -31,7 +26,7 @@ namespace RealEstate.Application.Users.Commands.EditUserData
 
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);
 
-            if(user.Id == request.UserId)
+            if (user.Id == request.UserId)
             {
                 user.Email = request.Email;
                 user.FirstName = request.FirstName;

@@ -3,26 +3,24 @@ using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Queries.GetEstateDetail
 {
     public class GetEstateDetailQueryHandler : IRequestHandler<GetEstateDetailQuery, EstateDetailVm>
     {
         private readonly IEstateDbContext _context;
+
         public GetEstateDetailQueryHandler(IEstateDbContext estateDbContext)
         {
             _context = estateDbContext;
         }
+
         public async Task<EstateDetailVm> Handle(GetEstateDetailQuery request, CancellationToken cancellationToken)
         {
             var estate = await _context.Estates.Where(p => p.Id == request.EstateId && p.StatusId == 1).FirstOrDefaultAsync(cancellationToken);
 
-            if (estate == null) {
+            if (estate == null)
+            {
                 throw new InvalidEstateIdException(request.EstateId);
             }
             else

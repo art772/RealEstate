@@ -26,7 +26,6 @@ namespace RealEstate.Application.Categories.Queries.GetCategoryDetails
             {
                 throw new CategoryDoesNotExistException();
             }
-
         }
 
         private CategoryDetailsVm MapCategorytoVm(Category category)

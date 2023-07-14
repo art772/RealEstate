@@ -2,17 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace RealEstate.Application.Estates.Queries.GetEstates
 {
     public class GetEstatesListQueryHandler : IRequestHandler<GetEstatesListQuery, List<EstateVm>>
-    {    
+    {
         private readonly IEstateDbContext _context;
 
         public GetEstatesListQueryHandler(IEstateDbContext context)
@@ -24,7 +18,7 @@ namespace RealEstate.Application.Estates.Queries.GetEstates
         {
             var estates = await _context.Estates.Where(p => p.StatusId == 1).ToListAsync(cancellationToken);
 
-            if(estates.Any())
+            if (estates.Any())
             {
                 return MapEstatesToVm(estates);
             }

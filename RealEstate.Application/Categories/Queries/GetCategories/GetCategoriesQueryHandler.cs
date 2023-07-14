@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Admin.Queries.GetCategories
 {
@@ -30,7 +25,7 @@ namespace RealEstate.Application.Admin.Queries.GetCategories
         {
             var result = new List<CategoriesVm>();
 
-            foreach(var category in categories)
+            foreach (var category in categories)
             {
                 var categoryVm = new CategoriesVm()
                 {

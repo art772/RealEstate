@@ -3,11 +3,6 @@ using Moq;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 using RealEstate.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UnitTests.Common
 {

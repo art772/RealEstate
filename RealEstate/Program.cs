@@ -2,14 +2,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using RealEstate.Application;
 using RealEstate.Domain.Entities;
 using RealEstate.Infrastructure;
 using RealEstate.Persistance;
 using Serilog;
-using System.Reflection.Emit;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,7 +44,7 @@ builder.Services.AddAuthentication(options =>
 })
     .AddJwtBearer(o =>
     {
-        o.SaveToken = true; 
+        o.SaveToken = true;
         o.RequireHttpsMetadata = false;
         o.TokenValidationParameters = new TokenValidationParameters()
         {

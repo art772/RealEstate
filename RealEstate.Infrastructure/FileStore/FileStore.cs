@@ -1,11 +1,4 @@
 ﻿using RealEstate.Application.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Infrastructure.FileStore
 {

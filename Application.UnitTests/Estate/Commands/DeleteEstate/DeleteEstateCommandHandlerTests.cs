@@ -1,13 +1,5 @@
 ﻿using Application.UnitTests.Common;
-using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Estates.Commands.DeleteEstate;
-using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace Application.UnitTests.Estate.Commands.DeleteEstate
 {

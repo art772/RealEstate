@@ -53,7 +53,6 @@ namespace RealEstate.Application.Estates.Commands.DeleteEstate
                 {
                     throw new PreviouslyDeletedEstateException();
                 }
-                
             }
             else
             {

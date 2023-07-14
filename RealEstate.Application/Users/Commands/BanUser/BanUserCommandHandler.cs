@@ -1,13 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Commands.BanUser
 {
@@ -19,6 +12,7 @@ namespace RealEstate.Application.Users.Commands.BanUser
         {
             _userManager = userManager;
         }
+
         public async Task<int> Handle(BanUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);

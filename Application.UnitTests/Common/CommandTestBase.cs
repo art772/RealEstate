@@ -1,10 +1,5 @@
 ﻿using Moq;
 using RealEstate.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UnitTests.Common
 {
@@ -12,7 +7,7 @@ namespace Application.UnitTests.Common
     {
         protected readonly EstateDbContext _context;
         protected readonly Mock<EstateDbContext> _contextMock;
-        
+
         public CommandTestBase()
         {
             _contextMock = EstateDbContextFactory.Create();

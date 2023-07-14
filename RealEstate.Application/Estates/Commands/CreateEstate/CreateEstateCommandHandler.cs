@@ -1,16 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Estates.Commands.CreateEstate
 {
@@ -26,6 +20,7 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }
+
         public async Task<int> Handle(CreateEstateCommand request, CancellationToken cancellationToken)
         {
             var genreCount = _context.Genres.Count();
@@ -58,13 +53,12 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
 
             if (request.GenreId > genreCount)
                 throw new Exception($"Genre Id can't be higher than {genreCount}");
-            
-            if(request.CategoryId > categoryCount)
-                throw new Exception($"Category Id can't be higher than {categoryCount}");
-            
-            if(request.StateId > stateCount)
-                throw new Exception($"State Id can't be higher than {stateCount}");
 
+            if (request.CategoryId > categoryCount)
+                throw new Exception($"Category Id can't be higher than {categoryCount}");
+
+            if (request.StateId > stateCount)
+                throw new Exception($"State Id can't be higher than {stateCount}");
 
             estate.ApplicationUserId = user.Id;
 

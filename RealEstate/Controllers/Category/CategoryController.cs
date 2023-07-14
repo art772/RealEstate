@@ -18,35 +18,30 @@ namespace RealEstate.Controllers.Category
         }
 
         [HttpPost]
-        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> CreateCategory(CreateCategoryCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         [HttpGet]
-        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> EditCategory(int id)
         {
             return Ok(await Mediator.Send(new GetCategoryToEditQuery() { CategoryId = id }));
         }
 
         [HttpPatch]
-        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         [HttpDelete]
-        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             return Ok(await Mediator.Send(new DeleteCategoryCommand() { CategoryId = id }));
         }
 
         [HttpPatch]
-        //[Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<IActionResult> RestoreCategory(RestoreCategoryCommand command)
         {
             return Ok(await Mediator.Send(command));

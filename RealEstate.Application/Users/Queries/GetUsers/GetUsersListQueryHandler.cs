@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Application.Users.Queries.GetUsers
 {
@@ -18,6 +13,7 @@ namespace RealEstate.Application.Users.Queries.GetUsers
         {
             _userManager = userManager;
         }
+
         public async Task<List<UserListVm>> Handle(GetUsersListQuery request, CancellationToken cancellationToken)
         {
             var users = await _userManager.Users.ToListAsync(cancellationToken);

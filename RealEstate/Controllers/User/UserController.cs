@@ -12,7 +12,6 @@ namespace RealEstate.Controllers.User
         [HttpGet]
         public async Task<IActionResult> GetDetail(int id)
         {
-
             return Ok(await Mediator.Send(new GetUserDetailsQuery() { UserId = id }));
         }
 
