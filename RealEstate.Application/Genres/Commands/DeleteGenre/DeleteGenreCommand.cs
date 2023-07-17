@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Genres.Commands.DeleteGenre
+﻿using MediatR;
+
+namespace RealEstate.Application.Genres.Commands.DeleteGenre
 {
-    internal class DeleteGenreCommand
+    public class DeleteGenreCommand : IRequest
     {
+        public int GenreId { get; set; }
     }
 }
