@@ -16,7 +16,7 @@ namespace RealEstate.Application.Estates.Commands.RestoreEstate
 
         public async Task<int> Handle(RestoreEstateCommand request, CancellationToken cancellationToken)
         {
-            var estate = await _context.Estates.SingleOrDefaultAsync(p => p.Id == request.EstateId);
+            var estate = await _context.Estates.SingleOrDefaultAsync(p => p.Id == request.EstateId && p.StatusId == 0);
 
             if (estate != null)
             {

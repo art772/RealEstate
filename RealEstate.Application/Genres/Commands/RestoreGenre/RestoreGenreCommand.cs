@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Genres.Commands.RestoreGenre
+﻿using MediatR;
+
+namespace RealEstate.Application.Genres.Commands.RestoreGenre
 {
-    internal class RestoreGenreCommand
+    public class RestoreGenreCommand : IRequest<int>
     {
+        public int GenreId { get; set; }
     }
 }
