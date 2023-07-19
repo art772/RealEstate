@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RealEstate.Application.Admin.Queries.GetGenres;
 using RealEstate.Application.Genres.Commands.DeleteGenre;
 using RealEstate.Application.Genres.Commands.RestoreGenre;
 
@@ -12,7 +13,7 @@ namespace RealEstate.Controllers.Genre
         [HttpGet]
         public async Task<IActionResult> GetGenres()
         {
-            return Ok();
+            return Ok(await Mediator.Send(new GetGenresQuery()));
         }
 
         [HttpPost]

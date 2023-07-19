@@ -1,6 +1,8 @@
-﻿namespace RealEstate.Application.Admin.Queries.GetGenres
+﻿using MediatR;
+
+namespace RealEstate.Application.Admin.Queries.GetGenres
 {
-    internal class GetGenresQuery
+    public class GetGenresQuery : IRequest<List<GenresVm>>
     {
     }
 }
