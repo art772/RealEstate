@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Genres.Queries.GetGenreToEdit
+﻿using MediatR;
+
+namespace RealEstate.Application.Genres.Queries.GetGenreToEdit
 {
-    internal class GetGenreToEditQuery
+    public class GetGenreToEditQuery : IRequest<GenreToEditVm>
     {
+        public int GenreId { get;set; }
     }
 }

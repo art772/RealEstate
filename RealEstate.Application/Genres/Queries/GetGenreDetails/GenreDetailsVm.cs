@@ -1,6 +1,7 @@
 ﻿namespace RealEstate.Application.Genres.Queries.GetGenreDetails
 {
-    internal class GenreDetailsVm
+    public class GenreDetailsVm
     {
+        public string GenreName { get; set; }
     }
 }

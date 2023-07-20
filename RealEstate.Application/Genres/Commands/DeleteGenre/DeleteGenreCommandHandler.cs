@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using System.Linq;
 
@@ -22,13 +23,13 @@ namespace RealEstate.Application.Genres.Commands.DeleteGenre
             {
                 _context.Genres.Remove(genre);
 
-                _context.SaveChangesAsync(cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
             else
             {
-                throw new Exception("Genre does not exist");
+                throw new GenreDoesNotExistException();
             }
         }
     }

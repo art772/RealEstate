@@ -1,6 +1,10 @@
-﻿namespace RealEstate.Application.Genres.Commands.UpdateGenre
+﻿using MediatR;
+
+namespace RealEstate.Application.Genres.Commands.UpdateGenre
 {
-    internal class UpdateGenreCommand
+    public class UpdateGenreCommand : IRequest<int>
     {
+        public int GenreId { get; set; }
+        public string GenreName { get; set; }
     }
 }

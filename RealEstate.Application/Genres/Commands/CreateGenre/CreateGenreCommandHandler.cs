@@ -22,7 +22,7 @@ namespace RealEstate.Application.Genres.Commands.CreateGenre
 
             await _context.Genres.AddAsync(genre);
 
-            _context.SaveChangesAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
 
             return genre.Id;
         }

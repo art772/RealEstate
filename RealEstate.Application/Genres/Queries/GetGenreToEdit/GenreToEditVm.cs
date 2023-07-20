@@ -1,6 +1,7 @@
 ﻿namespace RealEstate.Application.Genres.Queries.GetGenreToEdit
 {
-    internal class GenreToEditVm
+    public class GenreToEditVm
     {
+        public string GenreName { get; set; }
     }
 }

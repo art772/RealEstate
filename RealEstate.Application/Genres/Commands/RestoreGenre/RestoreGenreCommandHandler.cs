@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 
 namespace RealEstate.Application.Genres.Commands.RestoreGenre
@@ -15,15 +16,17 @@ namespace RealEstate.Application.Genres.Commands.RestoreGenre
 
         public async Task<int> Handle(RestoreGenreCommand request, CancellationToken cancellationToken)
         {
-            var genre = await _context.Genres.SingleOrDefaultAsync(x => x.Id == request.GenreId && x.StatusId == 0);
+            var genre = await _context.Genres.SingleOrDefaultAsync(x => x.Id == request.GenreId && x.StatusId == 0, cancellationToken);
 
             if (genre != null)
             {
                 genre.StatusId = 1;
+
+                await _context.SaveChangesAsync(cancellationToken);
             }
             else
             {
-                throw new Exception("Genre is not deleted");
+                throw new GenreDoesNotExistException();
             }
 
             return genre.Id;
