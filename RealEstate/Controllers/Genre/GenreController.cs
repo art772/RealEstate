@@ -10,7 +10,7 @@ using RealEstate.Application.Genres.Queries.GetGenreToEdit;
 
 namespace RealEstate.Controllers.Genre
 {
-    [Route("api/estates/[action]")]
+    [Route("api/genres/[action]")]
     [ApiController]
     public class GenreController : BaseController
     {
