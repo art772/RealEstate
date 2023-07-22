@@ -1,6 +1,7 @@
 ﻿namespace RealEstate.Application.Tags.Queries.GetTagDetails
 {
-    internal class TagDetailsVm
+    public class TagDetailsVm
     {
+        public string TagName { get; set; }
     }
 }

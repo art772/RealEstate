@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Tags.Queries.GetTagDetails
+﻿using MediatR;
+
+namespace RealEstate.Application.Tags.Queries.GetTagDetails
 {
-    internal class GetTagDetailsQuery
+    public class GetTagDetailsQuery : IRequest<TagDetailsVm>
     {
+        public int TagId { get; set; }
     }
 }

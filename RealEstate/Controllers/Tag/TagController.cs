@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RealEstate.Application.Tags.Queries.GetTagDetails;
 
 namespace RealEstate.Controllers.Tag
 {
@@ -15,7 +16,7 @@ namespace RealEstate.Controllers.Tag
         [HttpGet]
         public async Task<IActionResult> GetTagDetails(int id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new GetTagDetailsQuery() { TagId = id }));
         }
 
         [HttpGet]
