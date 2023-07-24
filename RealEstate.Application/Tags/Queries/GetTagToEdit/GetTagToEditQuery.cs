@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Tags.Queries.GetTagToEdit
+﻿using MediatR;
+
+namespace RealEstate.Application.Tags.Queries.GetTagToEdit
 {
-    internal class GetTagToEditQuery
+    public class GetTagToEditQuery : IRequest<TagToEditVm>
     {
+        public int TagId { get; set; }
     }
 }

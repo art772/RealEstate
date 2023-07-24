@@ -1,6 +1,8 @@
 ﻿namespace RealEstate.Application.Tags.Queries.GetTagToEdit
 {
-    internal class TagToEditVm
+    public class TagToEditVm
     {
+        public int Id { get;set; }
+        public string Name { get; set; }
     }
 }

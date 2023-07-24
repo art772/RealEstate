@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RealEstate.Application.Admin.Queries.GetTags;
 using RealEstate.Application.Tags.Queries.GetTagDetails;
+using RealEstate.Application.Tags.Queries.GetTagToEdit;
 
 namespace RealEstate.Controllers.Tag
 {
@@ -10,7 +12,7 @@ namespace RealEstate.Controllers.Tag
         [HttpGet]
         public async Task<IActionResult> GetTags()
         {
-            return Ok();
+            return Ok(await Mediator.Send(new GetTagsQuery()));
         }
 
         [HttpGet]
@@ -34,7 +36,7 @@ namespace RealEstate.Controllers.Tag
         [HttpGet]
         public async Task<IActionResult> EditTag(int id)
         {
-            return Ok();
+            return Ok(await Mediator.Send(new GetTagToEditQuery() { TagId = id }));
         }
 
         [HttpPatch]

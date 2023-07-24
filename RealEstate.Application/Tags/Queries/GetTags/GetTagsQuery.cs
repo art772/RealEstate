@@ -1,6 +1,8 @@
-﻿namespace RealEstate.Application.Admin.Queries.GetTags
+﻿using MediatR;
+
+namespace RealEstate.Application.Admin.Queries.GetTags
 {
-    internal class GetTagsQuery
+    public class GetTagsQuery : IRequest<List<TagsVm>>
     {
     }
 }
