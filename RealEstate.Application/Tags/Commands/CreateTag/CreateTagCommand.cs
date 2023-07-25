@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Tags.Commands.CreateTag
+﻿using MediatR;
+
+namespace RealEstate.Application.Tags.Commands.CreateTag
 {
-    internal class CreateTagCommand
+    public class CreateTagCommand : IRequest<int>
     {
+        public string Name { get; set; }
     }
 }

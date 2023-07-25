@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Tags.Commands.DeleteTag
+﻿using MediatR;
+
+namespace RealEstate.Application.Tags.Commands.DeleteTag
 {
-    internal class DeleteTagCommand
+    public class DeleteTagCommand : IRequest<int>
     {
+        public int TagId { get; set; }
     }
 }

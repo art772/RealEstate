@@ -1,6 +1,10 @@
-﻿namespace RealEstate.Application.Tags.Commands.UpdateTag
+﻿using MediatR;
+
+namespace RealEstate.Application.Tags.Commands.UpdateTag
 {
-    internal class UpdateTagCommand
+    public class UpdateTagCommand : IRequest<int>
     {
+        public int TagId { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.Tags.Commands.RestoreTag
+﻿using MediatR;
+
+namespace RealEstate.Application.Tags.Commands.RestoreTag
 {
-    internal class RestoreTagCommand
+    public class RestoreTagCommand : IRequest<int>
     {
+        public int TagId { get; set; }
     }
 }
