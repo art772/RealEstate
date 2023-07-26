@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.States.Queries.GetStateDetails
+﻿using MediatR;
+
+namespace RealEstate.Application.States.Queries.GetStateDetails
 {
-    internal class GetStateDetailsQuery
+    public class GetStateDetailsQuery : IRequest<StateDetailsVm>
     {
+        public int StateId { get; set; }
     }
 }

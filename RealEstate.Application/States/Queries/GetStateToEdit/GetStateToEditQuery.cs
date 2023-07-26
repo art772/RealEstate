@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.States.Queries.GetStateToEdit
+﻿using MediatR;
+
+namespace RealEstate.Application.States.Queries.GetStateToEdit
 {
-    internal class GetStateToEditQuery
+    public class GetStateToEditQuery : IRequest<StateToEditVm>
     {
+        public int StateId { get; set; }
     }
 }

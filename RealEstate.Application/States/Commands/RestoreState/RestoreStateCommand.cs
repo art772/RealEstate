@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.States.Commands.RestoreState
+﻿using MediatR;
+
+namespace RealEstate.Application.States.Commands.RestoreState
 {
-    internal class RestoreStateCommand
+    public class RestoreStateCommand : IRequest<int>
     {
+        public int StateId { get; set; }
     }
 }

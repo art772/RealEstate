@@ -1,6 +1,8 @@
 ﻿namespace RealEstate.Application.States.Queries.GetStateDetails
 {
-    internal class StateDetailsVm
+    public class StateDetailsVm
     {
+        public int StateId { get; set; }
+        public string StateName { get; set; }
     }
 }

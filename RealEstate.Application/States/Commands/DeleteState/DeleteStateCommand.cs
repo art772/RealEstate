@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.States.Commands.DeleteState
+﻿using MediatR;
+
+namespace RealEstate.Application.States.Commands.DeleteState
 {
-    internal class DeleteStateCommand
+    public class DeleteStateCommand : IRequest<int>
     {
+        public int StateId { get; set; }
     }
 }

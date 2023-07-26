@@ -1,6 +1,8 @@
 ﻿namespace RealEstate.Application.Admin.Queries.GetStates
 {
-    internal class StatesVm
+    public class StatesVm
     {
+        public int StateId { get; set; }
+        public string StateName { get; set; }
     }
 }

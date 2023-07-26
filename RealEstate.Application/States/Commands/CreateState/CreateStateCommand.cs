@@ -1,6 +1,9 @@
-﻿namespace RealEstate.Application.States.Commands.CreateState
+﻿using MediatR;
+
+namespace RealEstate.Application.States.Commands.CreateState
 {
-    internal class CreateStateCommand
+    public class CreateStateCommand : IRequest<int>
     {
+        public string Name { get;set; }
     }
 }

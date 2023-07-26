@@ -1,6 +1,8 @@
 ﻿namespace RealEstate.Application.States.Queries.GetStateToEdit
 {
-    internal class StateToEditVm
+    public class StateToEditVm
     {
+        public int StateId { get; set; }
+        public string StateName { get; set; }
     }
 }
