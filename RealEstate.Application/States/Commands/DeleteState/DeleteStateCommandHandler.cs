@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 
 namespace RealEstate.Application.States.Commands.DeleteState
@@ -12,9 +13,22 @@ namespace RealEstate.Application.States.Commands.DeleteState
             _context = context;
         }
 
-        public Task<int> Handle(DeleteStateCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteStateCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var state = await _context.States.Where(x => x.Id == request.StateId && x.StatusId == 1).FirstOrDefaultAsync(cancellationToken);
+
+            if (state != null)
+            {
+                _context.States.Remove(state);
+
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return state.Id;
+            }
+            else
+            {
+                throw new Exception("State does not exist");
+            }
         }
     }
 }

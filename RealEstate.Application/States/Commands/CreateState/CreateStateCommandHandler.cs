@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using RealEstate.Application.Common.Interfaces;
+using RealEstate.Domain.Entities;
 
 namespace RealEstate.Application.States.Commands.CreateState
 {
@@ -12,9 +13,17 @@ namespace RealEstate.Application.States.Commands.CreateState
             _context = context;
         }
 
-        public Task<int> Handle(CreateStateCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateStateCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var tag = new State()
+            {
+                Name = request.Name,
+            };
+            await _context.States.AddAsync(tag);
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return tag.Id;
         }
     }
 }

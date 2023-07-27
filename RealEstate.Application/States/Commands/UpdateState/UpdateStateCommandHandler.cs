@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 
 namespace RealEstate.Application.States.Commands.UpdateState
@@ -12,9 +13,22 @@ namespace RealEstate.Application.States.Commands.UpdateState
             _context = context;
         }
 
-        public Task<int> Handle(UpdateStateCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateStateCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var state = await _context.States.Where(x => x.Id == request.StateId).FirstOrDefaultAsync(cancellationToken);
+
+            if (state != null)
+            {
+                state.Name = request.StateName;
+
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return state.Id;
+            }
+            else
+            {
+                throw new Exception("State does not exist");
+            }
         }
     }
 }
