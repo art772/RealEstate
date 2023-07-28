@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Application.States.Queries.GetStateDetails;
 using RealEstate.Domain.Entities;
@@ -19,7 +20,14 @@ namespace RealEstate.Application.States.Queries.GetStateToEdit
         {
             var state = await _context.States.Where(x => x.Id == request.StateId).FirstOrDefaultAsync(cancellationToken);
 
-            return MapStateToDetailVm(state);
+            if (state != null)
+            {
+                return MapStateToDetailVm(state);
+            }
+            else
+            {
+                throw new StateDoesNotExistException();
+            }
         }
 
         private StateToEditVm MapStateToDetailVm(State state)

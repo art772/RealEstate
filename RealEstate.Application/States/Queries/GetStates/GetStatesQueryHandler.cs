@@ -19,7 +19,15 @@ namespace RealEstate.Application.Admin.Queries.GetStates
         {
             var states = await _context.States.ToListAsync(cancellationToken);
 
-            return MapStatesToVm(states);
+            if (states != null)
+            {
+                return MapStatesToVm(states);
+            }
+            else
+            {
+                throw new Exception("States list is empty");
+            }
+
         }
 
         private List<StatesVm> MapStatesToVm(List<State> states)

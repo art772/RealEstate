@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Domain.Entities;
 
@@ -18,7 +19,14 @@ namespace RealEstate.Application.States.Queries.GetStateDetails
         {
             var state = await _context.States.Where(x => x.Id == request.StateId).FirstOrDefaultAsync(cancellationToken);
 
-            return MapStateToVm(state);
+            if (state != null)
+            {
+                return MapStateToVm(state);
+            }
+            else
+            {
+                throw new StateDoesNotExistException();
+            }
         }
 
         private StateDetailsVm MapStateToVm(State state)

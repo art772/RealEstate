@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Application.Common.Exceptions;
 using RealEstate.Application.Common.Interfaces;
 
 namespace RealEstate.Application.States.Commands.RestoreState
@@ -27,7 +28,7 @@ namespace RealEstate.Application.States.Commands.RestoreState
             }
             else
             {
-                throw new Exception("State does not exist");
+                throw new StateDoesNotExistException();
             }
         }
     }
