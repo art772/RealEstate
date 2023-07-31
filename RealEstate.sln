@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealEstate.Persistance", "R
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D5BA48AD-331D-4D02-8A2B-FFB976F9CAA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{BDA269A2-F5ED-495B-A85E-3D46B3D95726}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "Application.UnitTests\Application.UnitTests.csproj", "{BDA269A2-F5ED-495B-A85E-3D46B3D95726}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Angular", "Angular", "{CBFAB81E-9CDB-4E55-A451-136FDD06E560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{11123F1A-8084-4E2D-BEA3-C74A08426ECD} = {D5BA48AD-331D-4D02-8A2B-FFB976F9CAA1}
 		{6821CED9-067B-4689-BCC5-F5BB9D2730BB} = {CDC37BCA-4ECF-442C-8C9C-70BEA062A067}
 		{A1E1AD65-B8D6-41C9-8F7C-3EE4D4183940} = {CDC37BCA-4ECF-442C-8C9C-70BEA062A067}
 		{8CCEE3F1-6FB4-4E94-9107-DC84E146678C} = {CDC37BCA-4ECF-442C-8C9C-70BEA062A067}
