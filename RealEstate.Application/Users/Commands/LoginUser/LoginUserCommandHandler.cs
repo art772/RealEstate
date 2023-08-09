@@ -43,6 +43,7 @@ namespace RealEstate.Application.Users.Commands.LoginUser
 
                 return new
                 {
+                    email = user.Email,
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
                 };
