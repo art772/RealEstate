@@ -51,7 +51,7 @@ namespace RealEstate.Controllers.Estate
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateEstate(CreateEstateCommand command)
         {
             CreateEstateCommandValidator validation = new CreateEstateCommandValidator();
@@ -65,7 +65,7 @@ namespace RealEstate.Controllers.Estate
             }
             else
             {
-                throw new Exception();
+                return BadRequest(validationResult.Errors);
             }
         }
 

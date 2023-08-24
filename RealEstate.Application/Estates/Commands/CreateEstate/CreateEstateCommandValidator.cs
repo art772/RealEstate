@@ -10,7 +10,7 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
             RuleFor(x => x.Description).NotEmpty().MinimumLength(5).MaximumLength(1000);
             RuleFor(x => x.Street).NotEmpty();
             RuleFor(x => x.StreetNumber).NotEmpty().MaximumLength(8);
-            RuleFor(x => x.FlatNumber).NotEmpty().MaximumLength(8);
+            RuleFor(x => x.FlatNumber).MaximumLength(8);
             RuleFor(x => x.City).NotEmpty().MaximumLength(20);
             RuleFor(x => x.ZipCode).NotEmpty().MaximumLength(8);
             RuleFor(x => x.Country).NotEmpty().MaximumLength(15);
