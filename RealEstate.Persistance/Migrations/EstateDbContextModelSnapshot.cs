@@ -271,24 +271,6 @@ namespace RealEstate.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4782),
-                            Name = "Sprzedaż",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4819),
-                            Name = "Wynajem",
-                            StatusId = 1
-                        });
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Estate", b =>
@@ -328,9 +310,16 @@ namespace RealEstate.Persistance.Migrations
                     b.Property<double>("EstateArea")
                         .HasColumnType("float");
 
+                    b.Property<string>("FinishState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FlatNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Floor")
+                        .HasColumnType("int");
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
@@ -340,6 +329,10 @@ namespace RealEstate.Persistance.Migrations
 
                     b.Property<DateTime?>("InactivatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("MarketType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
@@ -351,6 +344,9 @@ namespace RealEstate.Persistance.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("NumberOfRooms")
+                        .HasColumnType("int");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -387,29 +383,6 @@ namespace RealEstate.Persistance.Migrations
                     b.HasIndex("StateId");
 
                     b.ToTable("Estates");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            City = "Poznań",
-                            Country = "Polska",
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5187),
-                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ultricies nisl.",
-                            EstateArea = 150.0,
-                            FlatNumber = "5",
-                            GenreId = 2,
-                            Name = "Mieszkanie na sprzedaż 150m2",
-                            Price = 500000.0,
-                            StateId = 1,
-                            StatusId = 1,
-                            Street = "Dąbrowskiego",
-                            StreetNumber = "10",
-                            YearOfConstruction = 2022,
-                            ZipCode = "60-123"
-                        });
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.EstateTag", b =>
@@ -464,72 +437,35 @@ namespace RealEstate.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4946),
-                            Name = "Dom",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4951),
-                            Name = "Mieszkanie",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4954),
-                            Name = "Kawalerka",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4956),
-                            Name = "Apartament",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5017),
-                            Name = "Biuro",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5022),
-                            Name = "Pokój",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5026),
-                            Name = "Lokal usługowy",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5030),
-                            Name = "Garaż",
-                            StatusId = 1
-                        });
+            modelBuilder.Entity("RealEstate.Domain.Entities.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("EstateId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EstateId");
+
+                    b.ToTable("Photo");
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.State", b =>
@@ -569,48 +505,6 @@ namespace RealEstate.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("States");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5067),
-                            Name = "Dostępne",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5073),
-                            Name = "Niedostępne",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5077),
-                            Name = "Zarezerwowane",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5080),
-                            Name = "Wynajęte",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5084),
-                            Name = "Sprzedane",
-                            StatusId = 1
-                        });
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Tag", b =>
@@ -653,48 +547,6 @@ namespace RealEstate.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5150),
-                            Name = "Ogród",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5157),
-                            Name = "Taras",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5161),
-                            Name = "Winda",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5166),
-                            Name = "Basen",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedBy = "art772",
-                            CreatedDate = new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5168),
-                            Name = "Piętrowy",
-                            StatusId = 1
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -800,6 +652,13 @@ namespace RealEstate.Persistance.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("RealEstate.Domain.Entities.Photo", b =>
+                {
+                    b.HasOne("RealEstate.Domain.Entities.Estate", null)
+                        .WithMany("Photos")
+                        .HasForeignKey("EstateId");
+                });
+
             modelBuilder.Entity("RealEstate.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Estates");
@@ -813,6 +672,8 @@ namespace RealEstate.Persistance.Migrations
             modelBuilder.Entity("RealEstate.Domain.Entities.Estate", b =>
                 {
                     b.Navigation("EstateTags");
+
+                    b.Navigation("Photos");
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Genre", b =>

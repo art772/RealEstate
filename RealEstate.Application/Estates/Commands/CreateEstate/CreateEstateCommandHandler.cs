@@ -66,10 +66,10 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            foreach (var tag in request.EstateTags)
-            {
-                _context.EstateTags.Add(new EstateTag() { EstateId = estate.Id, TagId = tag });
-            }
+            //foreach (var tag in request.EstateTags)
+            //{
+            //    _context.EstateTags.Add(new EstateTag() { EstateId = estate.Id, TagId = tag });
+            //}
 
             await _context.SaveChangesAsync(cancellationToken);
 

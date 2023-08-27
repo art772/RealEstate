@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -256,6 +257,10 @@ namespace RealEstate.Persistance.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     EstateArea = table.Column<double>(type: "float", nullable: false),
                     YearOfConstruction = table.Column<int>(type: "int", nullable: false),
+                    MarketType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FinishState = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Floor = table.Column<int>(type: "int", nullable: false),
+                    NumberOfRooms = table.Column<int>(type: "int", nullable: false),
                     GenreId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false),
@@ -320,58 +325,26 @@ namespace RealEstate.Persistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "Photo",
+                columns: table => new
                 {
-                    { 1, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4782), null, null, null, null, "Sprzedaż", 1 },
-                    { 2, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4819), null, null, null, null, "Wynajem", 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Genres",
-                columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId" },
-                values: new object[,]
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsMain = table.Column<bool>(type: "bit", nullable: false),
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EstateId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
                 {
-                    { 1, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4946), null, null, null, null, "Dom", 1 },
-                    { 2, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4951), null, null, null, null, "Mieszkanie", 1 },
-                    { 3, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4954), null, null, null, null, "Kawalerka", 1 },
-                    { 4, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(4956), null, null, null, null, "Apartament", 1 },
-                    { 5, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5017), null, null, null, null, "Biuro", 1 },
-                    { 6, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5022), null, null, null, null, "Pokój", 1 },
-                    { 7, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5026), null, null, null, null, "Lokal usługowy", 1 },
-                    { 8, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5030), null, null, null, null, "Garaż", 1 }
+                    table.PrimaryKey("PK_Photo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Photo_Estates_EstateId",
+                        column: x => x.EstateId,
+                        principalTable: "Estates",
+                        principalColumn: "Id");
                 });
-
-            migrationBuilder.InsertData(
-                table: "States",
-                columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId" },
-                values: new object[,]
-                {
-                    { 1, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5067), null, null, null, null, "Dostępne", 1 },
-                    { 2, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5073), null, null, null, null, "Niedostępne", 1 },
-                    { 3, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5077), null, null, null, null, "Zarezerwowane", 1 },
-                    { 4, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5080), null, null, null, null, "Wynajęte", 1 },
-                    { 5, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5084), null, null, null, null, "Sprzedane", 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Tags",
-                columns: new[] { "Id", "CreatedBy", "CreatedDate", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "StatusId", "Value" },
-                values: new object[,]
-                {
-                    { 1, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5150), null, null, null, null, "Ogród", 1, null },
-                    { 2, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5157), null, null, null, null, "Taras", 1, null },
-                    { 3, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5161), null, null, null, null, "Winda", 1, null },
-                    { 4, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5166), null, null, null, null, "Basen", 1, null },
-                    { 5, "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5168), null, null, null, null, "Piętrowy", 1, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Estates",
-                columns: new[] { "Id", "ApplicationUserId", "CategoryId", "City", "Country", "CreatedBy", "CreatedDate", "Description", "EstateArea", "FlatNumber", "GenreId", "InactivatedBy", "InactivatedDate", "ModifiedBy", "ModifiedDate", "Name", "Price", "StateId", "StatusId", "Street", "StreetNumber", "YearOfConstruction", "ZipCode" },
-                values: new object[] { 1, null, 1, "Poznań", "Polska", "art772", new DateTime(2023, 6, 23, 14, 44, 1, 224, DateTimeKind.Local).AddTicks(5187), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec ultricies nisl.", 150.0, "5", 2, null, null, null, null, "Mieszkanie na sprzedaż 150m2", 500000.0, 1, 1, "Dąbrowskiego", "10", 2022, "60-123" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -436,6 +409,11 @@ namespace RealEstate.Persistance.Migrations
                 name: "IX_EstateTags_TagId",
                 table: "EstateTags",
                 column: "TagId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Photo_EstateId",
+                table: "Photo",
+                column: "EstateId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -459,13 +437,16 @@ namespace RealEstate.Persistance.Migrations
                 name: "EstateTags");
 
             migrationBuilder.DropTable(
+                name: "Photo");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Estates");
+                name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Estates");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

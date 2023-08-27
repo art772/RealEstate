@@ -15,6 +15,10 @@ namespace RealEstate.Domain.Entities
         public double Price { get; set; }
         public double EstateArea { get; set; }
         public int YearOfConstruction { get; set; }
+        public string MarketType { get; set; } // Primary market, aftermarket
+        public string FinishState { get; set; }
+        public int Floor { get; set; }
+        public int NumberOfRooms { get; set; }
 
         // One Estate has one Genre
         public int GenreId { get; set; }
@@ -36,5 +40,7 @@ namespace RealEstate.Domain.Entities
 
         public int? ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public List<Photo> Photos { get; set; } = new List<Photo>();
     }
 }

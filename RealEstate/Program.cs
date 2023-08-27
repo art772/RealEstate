@@ -95,15 +95,16 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    
     try
     {
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        var modelBuilder = new ModelBuilder();
+        //var modelBuilder = new ModelBuilder();
 
         await EstateDbContextSeed.SeedUserRolesAsync(roleManager);
         await EstateDbContextSeed.SeedDefaultSuperAdmin(userManager);
-        await EstateDbContextSeed.SeedDefaultData(modelBuilder);
+        //await EstateDbContextSeed.SeedDefaultData(modelBuilder);
     }
     catch (Exception)
     {

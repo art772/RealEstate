@@ -18,6 +18,11 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
         public int GenreId { get; set; }
         public int CategoryId { get; set; }
         public int StateId { get; set; }
-        public List<int> EstateTags { get; set; }
+        public string MarketType { get; set; }
+        public string FinishState { get; set; }
+        public int Floor { get; set; }
+        public int NumberOfRooms { get; set; }
+
+        //public List<int> EstateTags { get; set; }
     }
 }
