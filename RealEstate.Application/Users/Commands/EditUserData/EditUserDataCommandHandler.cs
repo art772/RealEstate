@@ -26,16 +26,16 @@ namespace RealEstate.Application.Users.Commands.EditUserData
 
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userName);
 
-            if (user.Id == request.UserId)
-            {
-                user.Email = request.Email;
-                user.FirstName = request.FirstName;
-                user.LastName = request.LastName;
-            }
+            // Dodać sprawdzenie od jakiego usera przychodzi rzadanie
 
+            user.Email = request.UserEmail;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.PhoneNumber = request.PhoneNumber;
+                
             await _userManager.UpdateAsync(user);
-
             return user.Id;
         }
+
     }
 }
