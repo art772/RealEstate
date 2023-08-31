@@ -14,6 +14,7 @@ namespace RealEstate.Infrastructure
             services.AddTransient<IFileStore, FileStore.FileStore>();
             services.AddTransient<IFileWrapper, FileWrapper>();
             services.AddTransient<IDirectoryWrapper, DirectoryWrapper>();
+            services.AddTransient<IPhotoService, PhotoService>();
             return services;
         }
     }

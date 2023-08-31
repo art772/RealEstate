@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RealEstate.Application;
+using RealEstate.Application.Common.Cloudinary;
 using RealEstate.Application.Common.ExceptionMIddleware;
 using RealEstate.Domain.Entities;
 using RealEstate.Infrastructure;
@@ -27,9 +28,11 @@ builder.Services.AddDbContext<EstateDbContext>(options => options.UseSqlServer(b
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options => options.SignIn.RequireConfirmedEmail = false)
     .AddEntityFrameworkStores<EstateDbContext>();
 
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrasructure(builder.Configuration);
 builder.Services.AddPersistance(builder.Configuration);
+
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 builder.Services.AddHttpContextAccessor();
 

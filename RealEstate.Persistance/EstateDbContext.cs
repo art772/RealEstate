@@ -28,6 +28,8 @@ namespace RealEstate.Persistance
         public DbSet<State> States { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<EstateTag> EstateTags { get; set; }
+        public DbSet<UserPhoto> UserPhotos { get; set; }
+        public DbSet<EstatePhoto> EstatePhotos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

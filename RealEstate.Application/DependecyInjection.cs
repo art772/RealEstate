@@ -1,15 +1,17 @@
 ﻿using FluentValidation;
 using MediatR;
 using MediatR.Pipeline;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RealEstate.Application.Common.Behaviours;
+using RealEstate.Application.Common.Cloudinary;
 using System.Reflection;
 
 namespace RealEstate.Application
 {
     public static class DependecyInjection
     {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

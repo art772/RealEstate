@@ -48,7 +48,11 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
                 YearOfConstruction = request.YearOfConstruction,
                 GenreId = request.GenreId,
                 CategoryId = request.CategoryId,
-                StateId = request.StateId
+                StateId = request.StateId,
+                MarketType = request.MarketType,
+                FinishState = request.FinishState,
+                Floor = request.Floor,
+                NumberOfRooms = request.NumberOfRooms
             };
 
             if (request.GenreId > genreCount)
@@ -66,14 +70,14 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
 
             await _context.SaveChangesAsync(cancellationToken);
 
+            return estate.Id;
             //foreach (var tag in request.EstateTags)
             //{
             //    _context.EstateTags.Add(new EstateTag() { EstateId = estate.Id, TagId = tag });
             //}
 
-            await _context.SaveChangesAsync(cancellationToken);
+            //await _context.SaveChangesAsync(cancellationToken);
 
-            return estate.Id;
         }
     }
 }

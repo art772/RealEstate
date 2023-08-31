@@ -302,6 +302,27 @@ namespace RealEstate.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EstatePhotos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EstateId = table.Column<int>(type: "int", nullable: true),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsMain = table.Column<bool>(type: "bit", nullable: false),
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EstatePhotos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EstatePhotos_Estates_EstateId",
+                        column: x => x.EstateId,
+                        principalTable: "Estates",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EstateTags",
                 columns: table => new
                 {
@@ -326,21 +347,28 @@ namespace RealEstate.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Photo",
+                name: "UserPhotos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    AppUserId = table.Column<int>(type: "int", nullable: true),
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: true),
+                    EstateId = table.Column<int>(type: "int", nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsMain = table.Column<bool>(type: "bit", nullable: false),
-                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EstateId = table.Column<int>(type: "int", nullable: true)
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Photo", x => x.Id);
+                    table.PrimaryKey("PK_UserPhotos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Photo_Estates_EstateId",
+                        name: "FK_UserPhotos_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_UserPhotos_Estates_EstateId",
                         column: x => x.EstateId,
                         principalTable: "Estates",
                         principalColumn: "Id");
@@ -386,6 +414,11 @@ namespace RealEstate.Persistance.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EstatePhotos_EstateId",
+                table: "EstatePhotos",
+                column: "EstateId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Estates_ApplicationUserId",
                 table: "Estates",
                 column: "ApplicationUserId");
@@ -411,8 +444,13 @@ namespace RealEstate.Persistance.Migrations
                 column: "TagId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Photo_EstateId",
-                table: "Photo",
+                name: "IX_UserPhotos_ApplicationUserId",
+                table: "UserPhotos",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserPhotos_EstateId",
+                table: "UserPhotos",
                 column: "EstateId");
         }
 
@@ -434,10 +472,13 @@ namespace RealEstate.Persistance.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "EstatePhotos");
+
+            migrationBuilder.DropTable(
                 name: "EstateTags");
 
             migrationBuilder.DropTable(
-                name: "Photo");
+                name: "UserPhotos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
