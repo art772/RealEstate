@@ -241,6 +241,27 @@ namespace RealEstate.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPhotos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsMain = table.Column<bool>(type: "bit", nullable: false),
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPhotos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserPhotos_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Estates",
                 columns: table => new
                 {
@@ -307,10 +328,10 @@ namespace RealEstate.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EstateId = table.Column<int>(type: "int", nullable: true),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsMain = table.Column<bool>(type: "bit", nullable: false),
-                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EstateId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -344,34 +365,6 @@ namespace RealEstate.Persistance.Migrations
                         principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserPhotos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AppUserId = table.Column<int>(type: "int", nullable: true),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: true),
-                    EstateId = table.Column<int>(type: "int", nullable: true),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsMain = table.Column<bool>(type: "bit", nullable: false),
-                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserPhotos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserPhotos_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_UserPhotos_Estates_EstateId",
-                        column: x => x.EstateId,
-                        principalTable: "Estates",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -447,11 +440,6 @@ namespace RealEstate.Persistance.Migrations
                 name: "IX_UserPhotos_ApplicationUserId",
                 table: "UserPhotos",
                 column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserPhotos_EstateId",
-                table: "UserPhotos",
-                column: "EstateId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -484,10 +472,10 @@ namespace RealEstate.Persistance.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Estates");
 
             migrationBuilder.DropTable(
-                name: "Estates");
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

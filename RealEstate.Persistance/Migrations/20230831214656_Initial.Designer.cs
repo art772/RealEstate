@@ -12,7 +12,7 @@ using RealEstate.Persistance;
 namespace RealEstate.Persistance.Migrations
 {
     [DbContext(typeof(EstateDbContext))]
-    [Migration("20230831180406_Initial")]
+    [Migration("20230831214656_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -559,13 +559,7 @@ namespace RealEstate.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("AppUserId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EstateId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsMain")
@@ -582,8 +576,6 @@ namespace RealEstate.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("EstateId");
 
                     b.ToTable("UserPhotos");
                 });
@@ -675,7 +667,7 @@ namespace RealEstate.Persistance.Migrations
             modelBuilder.Entity("RealEstate.Domain.Entities.EstatePhoto", b =>
                 {
                     b.HasOne("RealEstate.Domain.Entities.Estate", "Estate")
-                        .WithMany()
+                        .WithMany("Photos")
                         .HasForeignKey("EstateId");
 
                     b.Navigation("Estate");
@@ -705,10 +697,6 @@ namespace RealEstate.Persistance.Migrations
                     b.HasOne("RealEstate.Domain.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany("UserPhotos")
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("RealEstate.Domain.Entities.Estate", null)
-                        .WithMany("Photos")
-                        .HasForeignKey("EstateId");
 
                     b.Navigation("ApplicationUser");
                 });

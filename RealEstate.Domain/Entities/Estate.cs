@@ -41,6 +41,6 @@ namespace RealEstate.Domain.Entities
         public int? ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public ICollection<UserPhoto>? Photos { get; set; }
+        public ICollection<EstatePhoto>? Photos { get; set; }
     }
 }
