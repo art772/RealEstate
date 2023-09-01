@@ -64,7 +64,8 @@ namespace RealEstate.Controllers.User
             var photo = new UserPhoto
             {
                 Url = result.SecureUri.AbsoluteUri,
-                PublicId = result.PublicId
+                PublicId = result.PublicId,
+                ApplicationUser = user
             };
 
             if (user.UserPhotos.Count == null) photo.IsMain = true;
