@@ -68,7 +68,7 @@ namespace RealEstate.Controllers.User
                 ApplicationUser = user
             };
 
-            if (user.UserPhotos.Count == null) photo.IsMain = true;
+            if (user.UserPhotos.Count == 0) photo.IsMain = true;
             
             user.UserPhotos.Add(photo);
 
