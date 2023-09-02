@@ -12,7 +12,7 @@ using RealEstate.Persistance;
 namespace RealEstate.Persistance.Migrations
 {
     [DbContext(typeof(EstateDbContext))]
-    [Migration("20230831214656_Initial")]
+    [Migration("20230901220415_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,6 +223,9 @@ namespace RealEstate.Persistance.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int?>("UserPhotoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -283,7 +286,7 @@ namespace RealEstate.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ApplicationUserId")
+                    b.Property<int>("ApplicationUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
@@ -395,7 +398,7 @@ namespace RealEstate.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("EstateId")
+                    b.Property<int>("EstateId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsMain")
@@ -559,11 +562,8 @@ namespace RealEstate.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ApplicationUserId")
+                    b.Property<int>("ApplicationUserId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("bit");
 
                     b.Property<string>("PublicId")
                         .IsRequired()
@@ -575,7 +575,8 @@ namespace RealEstate.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
 
                     b.ToTable("UserPhotos");
                 });
@@ -635,7 +636,9 @@ namespace RealEstate.Persistance.Migrations
                 {
                     b.HasOne("RealEstate.Domain.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany("Estates")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("RealEstate.Domain.Entities.Category", "Category")
                         .WithMany("Estates")
@@ -668,7 +671,9 @@ namespace RealEstate.Persistance.Migrations
                 {
                     b.HasOne("RealEstate.Domain.Entities.Estate", "Estate")
                         .WithMany("Photos")
-                        .HasForeignKey("EstateId");
+                        .HasForeignKey("EstateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Estate");
                 });
@@ -695,8 +700,10 @@ namespace RealEstate.Persistance.Migrations
             modelBuilder.Entity("RealEstate.Domain.Entities.UserPhoto", b =>
                 {
                     b.HasOne("RealEstate.Domain.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany("UserPhotos")
-                        .HasForeignKey("ApplicationUserId");
+                        .WithOne("UserPhoto")
+                        .HasForeignKey("RealEstate.Domain.Entities.UserPhoto", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ApplicationUser");
                 });
@@ -705,7 +712,7 @@ namespace RealEstate.Persistance.Migrations
                 {
                     b.Navigation("Estates");
 
-                    b.Navigation("UserPhotos");
+                    b.Navigation("UserPhoto");
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Category", b =>

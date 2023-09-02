@@ -33,6 +33,7 @@ namespace RealEstate.Persistance.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsBanned = table.Column<bool>(type: "bit", nullable: false),
+                    UserPhotoId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -246,10 +247,9 @@ namespace RealEstate.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsMain = table.Column<bool>(type: "bit", nullable: false),
-                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: true)
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -258,7 +258,8 @@ namespace RealEstate.Persistance.Migrations
                         name: "FK_UserPhotos_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -285,7 +286,7 @@ namespace RealEstate.Persistance.Migrations
                     GenreId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     StateId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: true),
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -301,7 +302,8 @@ namespace RealEstate.Persistance.Migrations
                         name: "FK_Estates_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Estates_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -328,10 +330,10 @@ namespace RealEstate.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsMain = table.Column<bool>(type: "bit", nullable: false),
-                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EstateId = table.Column<int>(type: "int", nullable: true)
+                    EstateId = table.Column<int>(type: "int", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -340,7 +342,8 @@ namespace RealEstate.Persistance.Migrations
                         name: "FK_EstatePhotos_Estates_EstateId",
                         column: x => x.EstateId,
                         principalTable: "Estates",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -439,7 +442,8 @@ namespace RealEstate.Persistance.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_UserPhotos_ApplicationUserId",
                 table: "UserPhotos",
-                column: "ApplicationUserId");
+                column: "ApplicationUserId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -68,9 +68,7 @@ namespace RealEstate.Controllers.User
                 ApplicationUser = user
             };
 
-            if (user.UserPhotos.Count == 0) photo.IsMain = true;
-            
-            user.UserPhotos.Add(photo);
+            user.UserPhoto = photo;
 
             await _userManager.UpdateAsync(user);
 

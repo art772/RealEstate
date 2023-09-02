@@ -17,7 +17,9 @@ namespace RealEstate.Application.Users.Queries.GetUserDetails
 
         public async Task<UserDetailsVm> Handle(GetUserDetailsQuery request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == request.UserId);
+            var user = await _userManager.Users
+                .Include(x => x.UserPhoto)
+                .FirstOrDefaultAsync(x => x.Id == request.UserId);
 
             if (user == null)
             {
@@ -39,6 +41,12 @@ namespace RealEstate.Application.Users.Queries.GetUserDetails
                 LastName = user.LastName,
                 PhoneNumber = user.PhoneNumber
             };
+
+            if (user.UserPhoto != null)
+            {
+                userDetail.Photo = user.UserPhoto;
+            }
+
             return userDetail;
         }
     }

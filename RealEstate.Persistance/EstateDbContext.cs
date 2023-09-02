@@ -49,6 +49,11 @@ namespace RealEstate.Persistance
                 .HasOne(t => t.Tag)
                 .WithMany(et => et.EstateTags)
                 .HasForeignKey(t => t.TagId);
+
+            modelBuilder.Entity<UserPhoto>()
+                .HasOne(up => up.ApplicationUser)
+                .WithOne(au => au.UserPhoto)
+                .HasForeignKey<UserPhoto>(up => up.ApplicationUserId);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
