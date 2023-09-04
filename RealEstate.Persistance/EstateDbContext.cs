@@ -50,9 +50,9 @@ namespace RealEstate.Persistance
                 .WithMany(et => et.EstateTags)
                 .HasForeignKey(t => t.TagId);
 
-            modelBuilder.Entity<UserPhoto>()
-                .HasOne(up => up.ApplicationUser)
-                .WithOne(au => au.UserPhoto)
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOne(u => u.UserPhoto)
+                .WithOne(up => up.ApplicationUser)
                 .HasForeignKey<UserPhoto>(up => up.ApplicationUserId);
         }
 

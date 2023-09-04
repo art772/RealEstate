@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RealEstate.Application.Common.Interfaces;
 using RealEstate.Application.Users.Commands.EditUserData;
 using RealEstate.Application.Users.Queries.GetUserDetails;
@@ -16,10 +17,12 @@ namespace RealEstate.Controllers.User
     {
         private readonly IPhotoService _photoService;
         private readonly UserManager<ApplicationUser> _userManager;
-        public UserController(IPhotoService photoService, UserManager<ApplicationUser> userManager)
+        private readonly IEstateDbContext _context;
+        public UserController(IPhotoService photoService, UserManager<ApplicationUser> userManager, IEstateDbContext context)
         {
             _photoService = photoService;
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet]
@@ -52,7 +55,7 @@ namespace RealEstate.Controllers.User
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPhoto(IFormFile file)
+        public async Task<IActionResult> AddPhoto(IFormFile file, CancellationToken cancellationToken)
         {
             var userName = User.FindFirst(ClaimTypes.Name)?.Value;
             var user = await _userManager.FindByNameAsync(userName);
@@ -65,14 +68,42 @@ namespace RealEstate.Controllers.User
             {
                 Url = result.SecureUri.AbsoluteUri,
                 PublicId = result.PublicId,
-                ApplicationUser = user
+                ApplicationUserId = user.Id
             };
 
-            user.UserPhoto = photo;
+            _context.UserPhotos.Add(photo);
+            await _context.SaveChangesAsync(cancellationToken);
 
+            user.UserPhotoId = photo.Id;
             await _userManager.UpdateAsync(user);
 
             return Ok();
+        }
+
+        [HttpDelete]
+        [Route("photoId")]
+        public async Task<IActionResult> DeletePhoto(int photoId)
+        {
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            var user = await _userManager.Users
+              .Include(x => x.UserPhoto)
+              .FirstOrDefaultAsync(x => x.UserName == userName);
+
+            var photo = user.UserPhoto;
+
+            if (photo == null || photo.Id != photoId) return NotFound();
+
+            if (photo.PublicId != null)
+            {
+                var result = await _photoService.DeletePhotoAsync(photo.PublicId);
+                if ( result.Error != null ) return BadRequest(result.Error.Message);
+            }
+
+            user.UserPhoto = null;
+            user.UserPhotoId = null;
+            await _userManager.UpdateAsync(user);
+            
+            return Ok("Zdjęcie zostało usunięte.");
         }
     }
 }
