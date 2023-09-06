@@ -81,7 +81,7 @@ namespace RealEstate.Controllers.User
         }
 
         [HttpDelete]
-        [Route("photoId")]
+        [Route("{photoId}")]
         public async Task<IActionResult> DeletePhoto(int photoId)
         {
             var userName = User.FindFirst(ClaimTypes.Name)?.Value;
