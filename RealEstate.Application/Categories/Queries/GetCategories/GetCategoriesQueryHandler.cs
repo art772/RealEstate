@@ -29,7 +29,8 @@ namespace RealEstate.Application.Admin.Queries.GetCategories
             {
                 var categoryVm = new CategoriesVm()
                 {
-                    Name = category.Name,
+                    CategoryId = category.Id,
+                    CategoryName = category.Name
                 };
                 result.Add(categoryVm);
             }

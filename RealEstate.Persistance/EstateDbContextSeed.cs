@@ -19,7 +19,7 @@ namespace RealEstate.Persistance
 
         public static async Task SeedDefaultSuperAdmin(UserManager<ApplicationUser> userManager)
         {
-            var user = new ApplicationUser()
+            var userAdmin = new ApplicationUser()
             {
                 UserName = "SAdmin",
                 FirstName = "Super",
@@ -27,12 +27,9 @@ namespace RealEstate.Persistance
                 Email = "admin@admin.pl",
                 IsBanned = false
             };
-
             var password = "Password123!";
-
-            await userManager.CreateAsync(user, password);
-
-            await userManager.AddToRoleAsync(user, "SuperAdministrator");
+            await userManager.CreateAsync(userAdmin, password);
+            await userManager.AddToRoleAsync(userAdmin, "SuperAdministrator");
         }
 
         //public static async Task SeedDefaultData(this ModelBuilder modelBuilder)
