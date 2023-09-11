@@ -10,8 +10,21 @@ namespace RealEstate.Controllers.Auth
         [HttpPost]
         public async Task<IActionResult> RegisterUserAsync(RegisterUserCommand command)
         {
-            var result = await Mediator.Send(command);
-            return Ok(result);
+            RegisterUserCommandValidator validation = new RegisterUserCommandValidator();
+
+            var validationResult = await validation.ValidateAsync(command);
+
+            if (validationResult.IsValid)
+            {
+                var result = await Mediator.Send(command);
+                return Ok(result);
+            }
+            else
+            {
+                var validationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
+                return BadRequest(validationErrors);
+            }
+
         }
     }
 }

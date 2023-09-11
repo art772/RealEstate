@@ -71,12 +71,6 @@ namespace RealEstate.Application.Estates.Commands.CreateEstate
             await _context.SaveChangesAsync(cancellationToken);
 
             return estate.Id;
-            //foreach (var tag in request.EstateTags)
-            //{
-            //    _context.EstateTags.Add(new EstateTag() { EstateId = estate.Id, TagId = tag });
-            //}
-
-            //await _context.SaveChangesAsync(cancellationToken);
 
         }
     }
