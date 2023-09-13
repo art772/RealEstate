@@ -65,7 +65,8 @@ namespace RealEstate.Controllers.Estate
             }
             else
             {
-                return BadRequest(validationResult.Errors);
+                var validationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
+                return BadRequest(validationErrors);
             }
         }
 
