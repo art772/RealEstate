@@ -50,8 +50,8 @@ namespace RealEstate.Controllers.Estate
             return Ok(await Mediator.Send(new GetEstatesListByStateQuery() { SateId = id }));
         }
 
-        [HttpPost]
         //[Authorize]
+        [HttpPost]
         public async Task<IActionResult> CreateEstate(CreateEstateCommand command)
         {
             CreateEstateCommandValidator validation = new CreateEstateCommandValidator();
@@ -65,8 +65,8 @@ namespace RealEstate.Controllers.Estate
             }
             else
             {
-                var validationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
-                return BadRequest(validationErrors);
+                //throw new ValidationException(validationResult.Errors);
+                throw new Exception("Nie udało się dodać nieruchomości");
             }
         }
 
@@ -92,7 +92,8 @@ namespace RealEstate.Controllers.Estate
             }
             else
             {
-                throw new ValidationException(validationResult.Errors);
+                var validationErrors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
+                return BadRequest(validationErrors);
             }
         }
 
