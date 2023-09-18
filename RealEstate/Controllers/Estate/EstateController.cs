@@ -66,7 +66,8 @@ namespace RealEstate.Controllers.Estate
             else
             {
                 //throw new ValidationException(validationResult.Errors);
-                throw new Exception("Nie udało się dodać nieruchomości");
+                //throw new Exception("Nie udało się dodać nieruchomości");
+                return BadRequest(validationResult);
             }
         }
 
